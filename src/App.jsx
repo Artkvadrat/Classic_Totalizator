@@ -1,9 +1,10 @@
 // import './App.css';
+import EventPool from './components/EventPool/EventPool';
 
 function App() {
   return (
     <div>
-      <h1>Hello</h1>
+      <EventPool />
     </div>
   );
 }

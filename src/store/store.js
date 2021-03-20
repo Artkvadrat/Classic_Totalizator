@@ -1,7 +1,10 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import eventsReducer from '../ducks/events';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  events: eventsReducer
+});
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
