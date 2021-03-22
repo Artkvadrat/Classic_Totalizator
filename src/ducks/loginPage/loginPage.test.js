@@ -1,7 +1,6 @@
 import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import fetchMock from 'fetch-mock';
 
 import reducer, {
   loginUser,
@@ -12,20 +11,23 @@ import reducer, {
   DENIED_JWT_TOKEN
 } from './loginPage';
 
+jest.mock('../../services/HTTPService', () => ({
+  request: () =>
+    new Promise((resolve) => {
+      resolve({ jwtString: 'testJwtString' });
+    })
+}));
+
+const HTTPService = require('../../services/HTTPService');
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('loginPage reducer', () => {
-  afterEach(() => {
-    fetchMock.reset();
-    fetchMock.restore();
-  });
-
   describe('reducer', () => {
     it('should return the initial state', () => {
       expect(reducer(undefined, {})).toEqual({
         isLoading: false,
-        jwtToken: '',
         isLoggedIn: false
       });
     });
@@ -33,18 +35,18 @@ describe('loginPage reducer', () => {
     it('should handle REQUESTED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: false, jwtToken: '', isLoggedIn: false },
+          { isLoading: false, isLoggedIn: false },
           {
             type: REQUESTED_JWT_TOKEN
           }
         )
-      ).toEqual({ isLoading: true, jwtToken: '', isLoggedIn: false });
+      ).toEqual({ isLoading: true, isLoggedIn: false });
     });
 
     it('should handle RECEIVED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: true, jwtToken: '', isLoggedIn: false },
+          { isLoading: true, isLoggedIn: false },
           {
             type: RECEIVED_JWT_TOKEN,
             payload: 'testJwtToken'
@@ -52,7 +54,6 @@ describe('loginPage reducer', () => {
         )
       ).toEqual({
         isLoading: false,
-        jwtToken: 'testJwtToken',
         isLoggedIn: true
       });
     });
@@ -60,7 +61,7 @@ describe('loginPage reducer', () => {
     it('should handle TESTED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: true, jwtToken: '', isLoggedIn: false },
+          { isLoading: true, isLoggedIn: false },
           {
             type: TESTED_JWT_TOKEN,
             payload: 'testJwtToken'
@@ -68,7 +69,6 @@ describe('loginPage reducer', () => {
         )
       ).toEqual({
         isLoading: false,
-        jwtToken: 'testJwtToken',
         isLoggedIn: true
       });
     });
@@ -76,14 +76,13 @@ describe('loginPage reducer', () => {
     it('should handle DENIED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: true, jwtToken: '', isLoggedIn: false },
+          { isLoading: true, isLoggedIn: false },
           {
             type: DENIED_JWT_TOKEN
           }
         )
       ).toEqual({
         isLoading: false,
-        jwtToken: '',
         isLoggedIn: false
       });
     });
@@ -91,62 +90,33 @@ describe('loginPage reducer', () => {
 
   describe('Login with email and password', () => {
     it('should get jwtToken and dispatch RECEIVED_JWT_TOKEN', () => {
-      fetchMock.post(
-        'path:/api/Auth/login',
-        {
-          status: 200,
-          body: {
-            jwtString: 'testJwtToken'
-          }
-        },
-        {
-          headers: {
-            Accept: 'text/plain',
-            'Content-Type': 'application/json'
-          },
-          body: {
-            login: 'Daniel@test.com',
-            password: 'admin2'
-          }
-        }
-      );
-
       const expectedActions = [
         { type: REQUESTED_JWT_TOKEN },
-        { type: RECEIVED_JWT_TOKEN, payload: 'testJwtToken' }
+        { type: RECEIVED_JWT_TOKEN, payload: 'testJwtString' }
       ];
 
       const store = mockStore({ jwtToken: '' });
 
       return store.dispatch(loginUser({})).then(() => {
-        expect(fetchMock.called()).toEqual(true);
-        expect(fetchMock.calls().length).toEqual(1);
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
 
     it("shouldn't get jwtToken and dispatch DENIED_JWT_TOKEN because of incorrect data", () => {
-      fetchMock.post('path:/api/Auth/login', 403, {
-        headers: {
-          Accept: 'text/plain',
-          'Content-Type': 'application/json'
-        },
-        body: {
-          login: 'Daniel@test.com',
-          password: 'admin123'
-        }
-      });
+      HTTPService.request = jest.fn().mockImplementationOnce(() =>
+        Promise.reject(new Error('Bad jwt token')).then(() => ({
+          status: 403
+        }))
+      );
+
+      const store = mockStore({ jwtToken: '' });
 
       const expectedActions = [
         { type: REQUESTED_JWT_TOKEN },
         { type: DENIED_JWT_TOKEN }
       ];
 
-      const store = mockStore({ jwtToken: '' });
-
       return store.dispatch(loginUser({})).then(() => {
-        expect(fetchMock.called()).toBe(false);
-        expect(fetchMock.calls().length).toBe(0);
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
@@ -154,47 +124,36 @@ describe('loginPage reducer', () => {
 
   describe('Testing jwtToken from localStorage', () => {
     it('should test jwtToken by sending request on sports outcomes api', () => {
-      fetchMock.get(
-        'path:/api/Events/outcomes',
-        {
-          status: 200,
-          body: ['W1']
-        },
-        {
-          headers: {
-            Accept: 'text/plain',
-            'Content-Type': 'application/json'
-          }
-        }
+      HTTPService.request = jest.fn().mockImplementationOnce(() =>
+        Promise.resolve(() => ({
+          sports: ['W1', 'X', 'W2']
+        }))
       );
 
       const expectedActions = [
         { type: REQUESTED_JWT_TOKEN },
         {
           type: TESTED_JWT_TOKEN,
-          payload: 'testJwtToken'
+          payload: 'testJwtString'
         }
       ];
 
       const store = mockStore({ jwtToken: '' });
 
       return store
-        .dispatch(setTokenForAuthorisedUser('testJwtToken'))
+        .dispatch(setTokenForAuthorisedUser('testJwtString'))
         .then(() => {
-          expect(fetchMock.called()).toEqual(true);
-          expect(fetchMock.calls().length).toEqual(1);
           expect(store.getActions()).toEqual(expectedActions);
         });
     });
   });
 
   it("shouldn't set jwtToken and dispatch DENIED_JWT_TOKEN because of incorrect jwtToken", () => {
-    fetchMock.get('path:/api/Events/outcomes', 403, {
-      headers: {
-        Accept: 'text/plain',
-        'Content-Type': 'application/json'
-      }
-    });
+    HTTPService.request = jest.fn().mockImplementationOnce(() =>
+      Promise.reject(new Error('Bad jwt token')).then(() => ({
+        status: 403
+      }))
+    );
 
     const expectedActions = [
       { type: REQUESTED_JWT_TOKEN },
@@ -203,9 +162,7 @@ describe('loginPage reducer', () => {
 
     const store = mockStore({ jwtToken: '' });
 
-    return store.dispatch(loginUser({})).then(() => {
-      expect(fetchMock.called()).toBe(false);
-      expect(fetchMock.calls().length).toBe(0);
+    return store.dispatch(setTokenForAuthorisedUser()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

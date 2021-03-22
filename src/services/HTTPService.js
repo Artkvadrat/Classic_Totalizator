@@ -13,7 +13,7 @@ export default class HTTPService {
       headers: {
         Accept: 'text/plain',
         'Content-Type': 'application/json',
-        ...(!!jwtToken && { Authorization: jwtToken })
+        ...(!!jwtToken && { Authorization: `Bearer ${jwtToken}` })
       },
       ...(body && { body: JSON.stringify(body) })
     };

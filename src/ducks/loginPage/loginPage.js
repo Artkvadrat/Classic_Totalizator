@@ -28,10 +28,10 @@ export const loginUser = ({ email, password }) => (dispatch) => {
 
   return HTTPService.request({
     method: 'POST',
-    path: '/api/Auth/login',
+    path: '/api/v1/auth/Login',
     body: {
-      login: 'Daniel@test.com',
-      password: 'admin2'
+      login: 'js@js.js',
+      password: 'jsjsjs'
     }
   })
     .then(({ jwtString }) => {
@@ -50,14 +50,12 @@ export const setTokenForAuthorisedUser = (jwtToken) => (dispatch) => {
       dispatch(testedJwtToken(jwtToken));
     })
     .catch(() => {
-      window.localStorage.clear();
       dispatch(deniedJwtToken());
     });
 };
 
 const initialState = {
   isLoading: false,
-  jwtToken: '',
   isLoggedIn: false
 };
 
@@ -73,17 +71,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        jwtToken: action.payload,
         isLoggedIn: true
       };
     case TESTED_JWT_TOKEN:
       return {
         ...state,
         isLoading: false,
-        jwtToken: action.payload,
         isLoggedIn: true
       };
     case DENIED_JWT_TOKEN:
+      window.localStorage.clear();
       return {
         ...state,
         isLoading: false
