@@ -1,7 +1,9 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-const rootReducer = combineReducers({});
+import loginPage from '../ducks/loginPage/loginPage';
+
+const rootReducer = combineReducers({ loginPage });
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

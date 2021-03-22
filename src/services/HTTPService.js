@@ -13,11 +13,17 @@ export default class HTTPService {
       headers: {
         Accept: 'text/plain',
         'Content-Type': 'application/json',
-        ...(!!jwtToken && { Authorization: jwtToken })
+        ...(!!jwtToken && { Authorization: `Bearer ${jwtToken}` })
       },
       ...(body && { body: JSON.stringify(body) })
     };
 
-    return fetch(url, options).then((res) => res.json());
+    return fetch(url, options).then((res) => {
+      if ([401, 403].includes(res.status)) {
+        throw new Error('Invalid data');
+      }
+
+      return res.json();
+    });
   }
 }

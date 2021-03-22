@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage component should render button without error 1`] = `
+<button
+  className="backButton"
+  onClick={[Function]}
+  type="button"
+>
+  Назад
+</button>
+`;
+
+exports[`LoginPage component should render form without error 1`] = `
+<form
+  className="loginForm"
+  onSubmit={[Function]}
+>
+  <p>
+    Email
+  </p>
+  <input
+    type="text"
+  />
+  <p>
+    Password
+  </p>
+  <input
+    type="password"
+  />
+  <button
+    type="submit"
+  >
+    Login
+  </button>
+</form>
+`;
+
+exports[`LoginPage component should render without error 1`] = `
+<div>
+  <button
+    className="backButton"
+    onClick={[Function]}
+    type="button"
+  >
+    Назад
+  </button>
+  <form
+    className="loginForm"
+    onSubmit={[Function]}
+  >
+    <p>
+      Email
+    </p>
+    <input
+      type="text"
+    />
+    <p>
+      Password
+    </p>
+    <input
+      type="password"
+    />
+    <button
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;
