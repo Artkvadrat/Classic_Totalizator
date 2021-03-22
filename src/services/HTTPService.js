@@ -18,6 +18,12 @@ export default class HTTPService {
       ...(body && { body: JSON.stringify(body) })
     };
 
-    return fetch(url, options).then((res) => res.json());
+    return fetch(url, options).then((res) => {
+      if ([401, 403].includes(res.status)) {
+        throw new Error('Invalid data');
+      }
+
+      return res.json();
+    });
   }
 }
