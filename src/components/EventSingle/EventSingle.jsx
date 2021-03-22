@@ -1,76 +1,107 @@
 import React from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './EventSingle.module.css';
+import EventFinish from '../EventFinish/EventFinish';
+import { changeEvent } from '../../ducks/eventsList';
 
-const EventSingle = ({
-  eventData: {
+const EventSingle = ({ eventData }) => {
+  const {
     id,
+    participant1,
+    participant2,
+    startTime,
     sport,
     margin,
     possibleResults,
-    startTime,
-    participant1,
-    participant2
-  }
-}) => (
-  <li className={styles.wrapper}>
-    <div className={styles.sport}>Sport: {sport}</div>
+    isEnded,
+    eventResult
+  } = eventData;
 
-    <div className={styles.margin}>
-      Time: {new Date(startTime).toLocaleString()}
-    </div>
+  const dispatch = useDispatch();
 
-    <div className={styles.outcomes}>
-      Outcomes: {possibleResults.join(', ')}
-    </div>
+  const getHumanDateFormat = (dateString) => {
+    const dateObj = new Date(dateString);
+    const addLeadingZeros = (number) => number.toString().padStart(2, '0');
 
-    <div className={styles.margin}>Margin: {margin}%</div>
+    let month = dateObj.getMonth() + 1;
+    let date = dateObj.getDate();
+    let hh = dateObj.getHours();
+    let mm = dateObj.getMinutes();
 
-    <ul className={styles.participants}>
-      Participants
-      {[participant1, participant2].map(({ id, name, photo }) => (
-        <li key={id} className={styles.participant}>
-          <div>{name}</div>
+    [month, date, hh, mm] = [month, date, hh, mm].map((el) =>
+      addLeadingZeros(el)
+    );
 
-          <div className={styles.photo}>
-            <img src={photo} alt={name} />
-          </div>
+    return `${hh}:${mm} ${date}.${month}`;
+  };
 
-          {/* Should we add players of participant here?  */}
-        </li>
-      ))}
-    </ul>
+  const finishEventHandler = (selected) => {
+    // dispatch(
+    //   dispatcherForChangeEventByVova({ ...eventData, isEnded: true, eventResult: selected })
+    // );
+    dispatch(
+      changeEvent({ ...eventData, isEnded: true, eventResult: selected })
+    );
+  };
 
-    <div className={styles.links}>
-      <BrowserRouter>
+  return (
+    <li className={styles.wrapper}>
+      <div className={styles.time}>{getHumanDateFormat(startTime)}</div>
+
+      <div className={styles.sport}>{sport.name}</div>
+
+      <div className={styles.participants}>
+        <div>{participant1.name}</div>
+        <div>{participant2.name}</div>
+      </div>
+
+      <div className={styles.margin}>{margin}%</div>
+
+      <div className={styles.edit}>
         <Link to={`/edit/${id}`}>Edit</Link>{' '}
-        <Link to={`/finish/${id}`}>Finish</Link>
-      </BrowserRouter>
-    </div>
-  </li>
-);
+      </div>
+
+      {isEnded ? (
+        <div>{eventResult}</div>
+      ) : (
+        <EventFinish
+          finishEventHandler={finishEventHandler}
+          possibleResults={possibleResults}
+        />
+      )}
+    </li>
+  );
+};
 
 EventSingle.propTypes = {
   eventData: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     participant1: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
       players: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
-      photo: PropTypes.string
+      photoLink: PropTypes.string,
+      parameters: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string))
     }),
     participant2: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
       players: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
-      photo: PropTypes.string
+      photoLink: PropTypes.string,
+      parameters: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string))
     }),
     startTime: PropTypes.string,
-    sport: PropTypes.string,
+    sport: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string
+    }),
     margin: PropTypes.number,
-    possibleResults: PropTypes.arrayOf(PropTypes.number)
+    possibleResults: PropTypes.arrayOf(PropTypes.string),
+    isEnded: PropTypes.bool,
+    eventResult: PropTypes.string
   }).isRequired
 };
 

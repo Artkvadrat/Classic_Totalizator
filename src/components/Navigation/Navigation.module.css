@@ -1,0 +1,11 @@
+.menu {
+  display: flex;
+  gap: 1em;
+  list-style-type: none;
+  padding: 1em 0;
+  border-bottom: 1px solid black;
+}
+
+.menu li:last-child {
+  margin-left: auto;
+}

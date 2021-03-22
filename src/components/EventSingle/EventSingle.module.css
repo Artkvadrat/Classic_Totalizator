@@ -1,8 +1,18 @@
 .wrapper {
   padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
   border: 1px solid darkgrey;
-  border-radius: 10px;
-  box-shadow: 0 1.6px 3.6px rgba(0, 0, 0, 0.035),
-    0 4.5px 10px rgba(0, 0, 0, 0.05), 0 10.9px 24.1px rgba(0, 0, 0, 0.065),
-    0 36px 80px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+}
+
+li > div {
+  padding: 0 1em;
+  border-right: 1px solid gray;
+  display: flex;
+  gap: 1em;
+}
+
+li > div:last-of-type {
+  border-right: 0;
 }
