@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import 'antd/dist/antd.css';
 
 import styles from './App.module.css';
-
 import Navigation from './components/Navigation/Navigation';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
-import UserPage from './components/UserPage/UserPage';
+import UsersPage from './components/UsersPage/UsersPage';
 import EventPool from './components/EventPool/EventPool';
 // import LoginPage from './components/LoginPage/LoginPage';
 
@@ -33,8 +33,8 @@ const App = () => (
           {/* <EventEdit /> */}
         </Route>
 
-        <Route path="/user">
-          <UserPage />
+        <Route path="/users">
+          <UsersPage />
         </Route>
 
         <Route path="/">

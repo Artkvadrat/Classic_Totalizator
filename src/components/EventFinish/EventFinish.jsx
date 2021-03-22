@@ -1,39 +1,56 @@
-/* eslint-disable jsx-a11y/no-onchange */
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Select, Button, Space } from 'antd';
+import { changeEvent } from '../../ducks/events';
 
-const EventFinish = ({ finishEventHandler, possibleResults }) => {
+const EventFinish = ({ possibleResults, eventId }) => {
+  const dispatch = useDispatch();
+
   const [selectedOption, setSelectedOption] = useState('Not resolved');
 
-  const selectHandler = (e) => {
-    setSelectedOption(e.target.value);
+  const event = useSelector((state) =>
+    state.events.eventsData.find((el) => el.id === eventId)
+  );
+
+  const selectHandler = (value) => {
+    setSelectedOption(value);
   };
 
-  const buttonHandler = () => {
-    finishEventHandler(selectedOption);
+  const finishEventHandler = () => {
+    dispatch(
+      changeEvent({ ...event, isEnded: true, eventResult: selectedOption })
+    );
   };
 
   return (
-    <div>
-      <select onChange={selectHandler} selected={selectedOption}>
-        <option value="Not resolved">Not resolved</option>
+    <Space>
+      <Select
+        style={{ width: 130 }}
+        onChange={selectHandler}
+        defaultValue={selectedOption}
+      >
+        <Select.Option value="Not resolved">Not resolved</Select.Option>
         {possibleResults.map((el) => (
-          <option key={el} value={el}>
+          <Select.Option key={el} value={el}>
             {el}
-          </option>
+          </Select.Option>
         ))}
-      </select>
-      {selectedOption !== 'Not resolved' && (
-        <button type="button" onClick={buttonHandler}>
-          Finish
-        </button>
-      )}
-    </div>
+      </Select>
+
+      <Button
+        disabled={selectedOption === 'Not resolved'}
+        type="primary"
+        onClick={finishEventHandler}
+      >
+        Finish
+      </Button>
+    </Space>
   );
 };
 
 EventFinish.propTypes = {
-  finishEventHandler: PropTypes.func.isRequired,
+  eventId: PropTypes.string,
   possibleResults: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 

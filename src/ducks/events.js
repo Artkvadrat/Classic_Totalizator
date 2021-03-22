@@ -1,8 +1,8 @@
 import HTTPService from '../services/HTTPService';
 
-const REQUESTED = 'classic_totalizator/events_list/requested';
-const RECEIVED = 'classic_totalizator/events_list/received';
-const EDIT = 'classic_totalizator/events_list/edit';
+const REQUESTED = 'classic_totalizator/events/requested';
+const RECEIVED = 'classic_totalizator/events/received';
+const EDIT = 'classic_totalizator/events/edit';
 
 const requested = () => ({
   type: REQUESTED
@@ -25,10 +25,6 @@ export const changeEvent = (data) => (dispatch) => {
 export const getEvents = () => (dispatch) => {
   dispatch(requested());
 
-  /**
-   * Shall we use pagination in all events request?
-   * If so, add pagination skip limit to path and to getEvents(skip, limit)
-   */
   HTTPService.request({ path: '/api/Events/feed' }).then((data) => {
     dispatch(received(data));
   }, []);
@@ -39,7 +35,7 @@ const initialState = {
   eventsData: []
 };
 
-const eventsListReducer = (state = initialState, action) => {
+const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUESTED:
       return { ...state, isLoading: true };
@@ -64,4 +60,4 @@ const eventsListReducer = (state = initialState, action) => {
   }
 };
 
-export default eventsListReducer;
+export default eventsReducer;

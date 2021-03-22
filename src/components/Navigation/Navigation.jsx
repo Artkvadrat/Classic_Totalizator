@@ -1,24 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import styles from './Navigation.module.css';
+import { Menu } from 'antd';
 
 const Navigation = () => (
-  <nav>
-    <ul className={styles.menu}>
-      <li>
-        <Link to="/">All Events</Link>
-      </li>
+  <Menu mode="horizontal">
+    <Menu.Item>
+      <Link to="/">All Events</Link>
+    </Menu.Item>
 
-      <li>
-        <Link to="/create">Create Event</Link>
-      </li>
+    <Menu.Item>
+      <Link to="/create">Create Event</Link>
+    </Menu.Item>
 
-      <li>
-        <Link to="/user">User</Link>
-      </li>
-    </ul>
-  </nav>
+    <Menu.Item>
+      <Link to="/users">Users</Link>
+    </Menu.Item>
+  </Menu>
 );
 
 export default Navigation;

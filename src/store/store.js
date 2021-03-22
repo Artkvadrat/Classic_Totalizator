@@ -1,9 +1,9 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import eventsListReducer from '../ducks/eventsList';
+import eventsReducer from '../ducks/events';
 
 const rootReducer = combineReducers({
-  eventsList: eventsListReducer
+  events: eventsReducer
 });
 
 const composeEnhancers =
