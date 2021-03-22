@@ -20,8 +20,7 @@ jest.mock('react-redux', () => ({
 }));
 
 jest.mock('../../ducks/loginPage/loginPage', () => ({
-  loginUser: jest.fn(),
-  setTokenForAuthorisedUser: jest.fn()
+  loginUser: jest.fn()
 }));
 
 describe('LoginPage component', () => {
@@ -42,10 +41,6 @@ describe('LoginPage component', () => {
     wrapper = shallow(<LoginPage />);
   });
 
-  afterAll(() => {
-    window.localStorage.prototype.getItem.mockReset();
-  });
-
   it('should render without error', () => {
     expect(wrapper).toMatchSnapshot();
   });
@@ -59,8 +54,6 @@ describe('LoginPage component', () => {
     expect(wrapper.find('form.loginForm')).toBeDefined();
     expect(wrapper.find('form.loginForm')).toMatchSnapshot();
   });
-
-  it("should trigger dispatch if localStorage isn't empty", () => {});
 
   it('should trigger history.push on click button', () => {
     const button = wrapper.find('button.backButton');

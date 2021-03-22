@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-17-updated": "^1.0.2",
+    "identity-obj-proxy": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -62,6 +63,9 @@
     "redux-mock-store": "^1.5.4"
   },
   "jest": {
+    "moduleNameMapper": {
+      "\\.(css)$": "identity-obj-proxy"
+    },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
