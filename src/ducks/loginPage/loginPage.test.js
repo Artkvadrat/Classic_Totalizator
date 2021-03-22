@@ -97,9 +97,11 @@ describe('loginPage reducer', () => {
 
       const store = mockStore({ jwtToken: '' });
 
-      return store.dispatch(loginUser({})).then(() => {
-        expect(store.getActions()).toEqual(expectedActions);
-      });
+      return store
+        .dispatch(loginUser({ email: 'email', password: 'password' }))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
     });
 
     it("shouldn't get jwtToken and dispatch DENIED_JWT_TOKEN because of incorrect data", () => {

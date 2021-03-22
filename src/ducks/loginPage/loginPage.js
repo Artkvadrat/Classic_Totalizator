@@ -30,8 +30,8 @@ export const loginUser = ({ email, password }) => (dispatch) => {
     method: 'POST',
     path: '/api/v1/auth/Login',
     body: {
-      login: 'js@js.js',
-      password: 'jsjsjs'
+      login: email,
+      password
     }
   })
     .then(({ jwtString }) => {
