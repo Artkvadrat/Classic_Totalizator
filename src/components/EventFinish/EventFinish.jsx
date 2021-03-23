@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Select, Button, Space } from 'antd';
-import { changeEvent } from '../../ducks/events';
 
-const EventFinish = ({ possibleResults, eventId }) => {
+import { finishEvent } from '../../ducks/events';
+
+const EventFinish = ({ possibleResults, id }) => {
   const dispatch = useDispatch();
-
   const [selectedOption, setSelectedOption] = useState('Not resolved');
-
-  const event = useSelector((state) =>
-    state.events.eventsData.find((el) => el.id === eventId)
-  );
 
   const selectHandler = (value) => {
     setSelectedOption(value);
   };
 
   const finishEventHandler = () => {
-    dispatch(
-      changeEvent({ ...event, isEnded: true, eventResult: selectedOption })
-    );
+    dispatch(finishEvent({ id, result: selectedOption }));
   };
 
   return (
@@ -50,7 +44,7 @@ const EventFinish = ({ possibleResults, eventId }) => {
 };
 
 EventFinish.propTypes = {
-  eventId: PropTypes.string,
+  id: PropTypes.string,
   possibleResults: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 

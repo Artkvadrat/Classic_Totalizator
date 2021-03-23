@@ -1,8 +1,8 @@
 import HTTPService from '../services/HTTPService';
 
-const REQUESTED = 'classic_totalizator/events/requested';
-const RECEIVED = 'classic_totalizator/events/received';
-const EDIT = 'classic_totalizator/events/edit';
+const REQUESTED = 'events/requested';
+const RECEIVED = 'events/received';
+const FINISH = 'event/finish';
 
 const requested = () => ({
   type: REQUESTED
@@ -10,16 +10,22 @@ const requested = () => ({
 
 const received = (data) => ({
   type: RECEIVED,
-  payload: { data }
-});
-
-const edit = (data) => ({
-  type: EDIT,
   payload: data
 });
 
-export const changeEvent = (data) => (dispatch) => {
-  dispatch(edit(data));
+const finish = (data) => ({
+  type: FINISH,
+  payload: data
+});
+
+export const finishEvent = (data) => (dispatch) => {
+  HTTPService.request({
+    method: 'PATCH',
+    path: '/api/Events/finishEvent',
+    body: data
+  });
+
+  dispatch(finish(data));
 };
 
 export const getEvents = () => (dispatch) => {
@@ -27,7 +33,7 @@ export const getEvents = () => (dispatch) => {
 
   HTTPService.request({ path: '/api/Events/feed' }).then((data) => {
     dispatch(received(data));
-  }, []);
+  });
 };
 
 const initialState = {
@@ -38,23 +44,30 @@ const initialState = {
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUESTED:
-      return { ...state, isLoading: true };
-    case RECEIVED:
-      return {
-        isLoading: false,
-        eventsData: [...action.payload.data]
-      };
-    case EDIT:
       return {
         ...state,
-        eventsData: state.eventsData.map((el) => {
-          if (el.id === action.payload.id) {
-            return action.payload;
+        isLoading: true
+      };
+
+    case RECEIVED:
+      return {
+        ...state,
+        isLoading: false,
+        eventsData: [...action.payload.events]
+      };
+
+    case FINISH:
+      return {
+        ...state,
+        eventsData: state.eventsData.map((event) => {
+          if (event.id === action.payload.id) {
+            return { ...event, isEnded: true };
           }
 
-          return el;
+          return event;
         })
       };
+
     default:
       return state;
   }

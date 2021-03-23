@@ -49,15 +49,15 @@ const EventPool = () => {
             isEnded ? (
               'Event finished'
             ) : (
-              <EventFinish eventId={key} possibleResults={possibleResults} />
+              <EventFinish id={key} possibleResults={possibleResults} />
             )
           }
         />
         <Table.Column
-          title="Result/Action"
+          title="Action"
           key="action"
-          render={({ isEnded, eventResult, key }) =>
-            isEnded ? `${eventResult}` : <Link to={`/edit/${key}`}>Edit</Link>
+          render={({ isEnded, key }) =>
+            !isEnded && <Link to={`/edit/${key}`}>Edit</Link>
           }
         />
       </Table>

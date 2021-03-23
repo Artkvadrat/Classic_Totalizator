@@ -21,29 +21,29 @@ const getHumanDateFormat = (dateString) => {
 
 const isLoadingSelector = (state) => state.events.isLoading;
 const eventsDataSelector = (state) =>
-  state.events.eventsData.map(
-    ({
-      id,
-      participant1,
-      participant2,
-      startTime,
-      sport,
-      margin,
-      possibleResults,
-      eventResult,
-      isEnded
-    }) => ({
-      key: id,
-      date: getHumanDateFormat(startTime),
-      player1: participant1.name,
-      player2: participant2.name,
-      sport: sport.name,
-      margin: `${margin}%`,
-      possibleResults,
-      eventResult,
-      isEnded
-    })
-  );
+  state.events.eventsData
+    .sort((a, b) => Date.parse(a.startTime) - Date.parse(b.startTime))
+    .map(
+      ({
+        id,
+        startTime,
+        participant1,
+        participant2,
+        sportName,
+        margin,
+        possibleResults,
+        isEnded
+      }) => ({
+        key: id,
+        date: getHumanDateFormat(startTime),
+        player1: participant1.name,
+        player2: participant2.name,
+        sport: sportName,
+        margin: `${margin}%`,
+        possibleResults,
+        isEnded
+      })
+    );
 
 const eventPoolSelector = createStructuredSelector({
   isLoading: isLoadingSelector,
