@@ -7,7 +7,7 @@ import Navigation from './components/Navigation/Navigation';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import UsersPage from './components/UsersPage/UsersPage';
 import EventPool from './components/EventPool/EventPool';
-// import LoginPage from './components/LoginPage/LoginPage';
+import LoginPage from './components/LoginPage/LoginPage';
 
 const App = () => (
   <BrowserRouter>
@@ -19,9 +19,9 @@ const App = () => (
           <EventPool />
         </Route>
 
-        {/* <Route path="/login">
+        <Route path="/login">
           <LoginPage />
-        </Route> */}
+        </Route>
 
         <Route path="/create">
           Component for create event
