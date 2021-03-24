@@ -4,6 +4,7 @@ export const REQUESTED_JWT_TOKEN = 'login_page/requested';
 export const RECEIVED_JWT_TOKEN = 'login_page/received';
 export const TESTED_JWT_TOKEN = 'login_page/tested';
 export const DENIED_JWT_TOKEN = 'login_page/denied';
+export const LOGOUT = 'login_page/logout';
 
 const requestedJwtToken = () => ({
   type: REQUESTED_JWT_TOKEN
@@ -23,12 +24,16 @@ const deniedJwtToken = () => ({
   type: DENIED_JWT_TOKEN
 });
 
+const logoutAction = () => ({
+  type: LOGOUT
+});
+
 export const loginUser = ({ email, password }) => (dispatch) => {
   dispatch(requestedJwtToken());
 
   return HTTPService.request({
     method: 'POST',
-    path: '/api/v1/auth/Login',
+    path: '/api/v1/auth/admin/login',
     body: {
       login: email,
       password
@@ -42,7 +47,7 @@ export const loginUser = ({ email, password }) => (dispatch) => {
     });
 };
 
-export const setTokenForAuthorisedUser = (jwtToken) => (dispatch) => {
+export const testJwtTokenFromLocalStorage = (jwtToken) => (dispatch) => {
   dispatch(requestedJwtToken());
 
   return HTTPService.request({ path: '/api/Events/outcomes' })
@@ -52,6 +57,10 @@ export const setTokenForAuthorisedUser = (jwtToken) => (dispatch) => {
     .catch(() => {
       dispatch(deniedJwtToken());
     });
+};
+
+export const logout = () => (dispatch) => {
+  dispatch(logoutAction());
 };
 
 const initialState = {
@@ -84,6 +93,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false
+      };
+    case LOGOUT:
+      window.localStorage.clear();
+      return {
+        ...state,
+        isLoggedIn: false
       };
     default:
       return state;

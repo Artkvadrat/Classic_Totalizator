@@ -1,39 +1,27 @@
 import React, { useMemo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-
-import styles from './loginPage.module.css';
+import { useDispatch } from 'react-redux';
+import { Form, Input, Button, Row } from 'antd';
 
 import {
   loginUser,
-  setTokenForAuthorisedUser
+  testJwtTokenFromLocalStorage
 } from '../../ducks/loginPage/loginPage';
 
-function LoginPage() {
+const LoginPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const { isLoggedIn } = useSelector((state) => state.loginPage);
-
-  if (isLoggedIn) {
-    history.push('/');
-  }
 
   useEffect(() => {
-    if (window.localStorage.length !== 0) {
-      dispatch(
-        setTokenForAuthorisedUser(window.localStorage.getItem('jwtToken'))
-      );
+    const token = window.localStorage.getItem('jwtToken');
+    if (token) {
+      dispatch(testJwtTokenFromLocalStorage(token));
     }
   }, [dispatch]);
 
   const submitLoginForm = useMemo(
-    () => (e) => {
-      e.preventDefault();
-
+    () => (values) => {
       const data = {
-        email: e.target[0].value,
-        password: e.target[1].value
+        email: values.email,
+        password: values.password
       };
 
       dispatch(loginUser(data));
@@ -41,27 +29,46 @@ function LoginPage() {
     [dispatch]
   );
 
-  const goBack = useMemo(
-    () => () => {
-      history.push('/');
-    },
-    [history]
-  );
-
   return (
-    <div>
-      <button type="button" className={styles.backButton} onClick={goBack}>
-        Назад
-      </button>
-      <form onSubmit={submitLoginForm} className={styles.loginForm}>
-        <p>Email</p>
-        <input type="text" />
-        <p>Password</p>
-        <input type="password" />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <Row
+      type="flex"
+      justify="center"
+      align="middle"
+      style={{ textAlign: 'center', paddingTop: '200px' }}
+    >
+      <Form layout="vertical" onFinish={submitLoginForm}>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: 'Please enter email'
+            }
+          ]}
+        >
+          <Input placeholder="Email" />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please enter password'
+            }
+          ]}
+        >
+          <Input.Password placeholder="Password" />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </Row>
   );
-}
+};
 
 export default LoginPage;

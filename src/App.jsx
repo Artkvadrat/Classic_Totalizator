@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import 'antd/dist/antd.css';
 
@@ -9,40 +10,48 @@ import UsersPage from './components/UsersPage/UsersPage';
 import EventPool from './components/EventPool/EventPool';
 import LoginPage from './components/LoginPage/LoginPage';
 
-const App = () => (
-  <BrowserRouter>
-    <div className={styles.wrapper}>
-      <Navigation />
+const App = () => {
+  const { isLoggedIn } = useSelector((state) => state.loginPage);
 
-      <Switch>
-        <Route exact path="/">
-          <EventPool />
-        </Route>
+  if (!isLoggedIn) {
+    return <LoginPage />;
+  }
 
-        <Route path="/login">
-          <LoginPage />
-        </Route>
+  return (
+    <BrowserRouter>
+      <div className={styles.wrapper}>
+        <Navigation />
 
-        <Route path="/create">
-          Component for create event
-          {/* <EventCreate /> */}
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <EventPool />
+          </Route>
 
-        <Route path="/edit/:id">
-          Component for edit event
-          {/* <EventEdit /> */}
-        </Route>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
 
-        <Route path="/users">
-          <UsersPage />
-        </Route>
+          <Route path="/create">
+            Component for create event
+            {/* <EventCreate /> */}
+          </Route>
 
-        <Route path="/">
-          <NotFoundPage />
-        </Route>
-      </Switch>
-    </div>
-  </BrowserRouter>
-);
+          <Route path="/edit/:id">
+            Component for edit event
+            {/* <EventEdit /> */}
+          </Route>
+
+          <Route path="/users">
+            <UsersPage />
+          </Route>
+
+          <Route path="/">
+            <NotFoundPage />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
+};
 
 export default App;

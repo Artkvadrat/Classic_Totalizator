@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation component should render without errors 1`] = `
+<Menu
+  mode="horizontal"
+>
+  <MenuItem>
+    <Link
+      to="/"
+    >
+      All Events
+    </Link>
+  </MenuItem>
+  <MenuItem>
+    <Link
+      to="/create"
+    >
+      Create Event
+    </Link>
+  </MenuItem>
+  <MenuItem>
+    <Link
+      to="/users"
+    >
+      Users
+    </Link>
+  </MenuItem>
+  <MenuItem
+    style={
+      Object {
+        "float": "right",
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundColor": "inherit",
+          "border": 0,
+          "cursor": "pointer",
+        }
+      }
+      type="button"
+    >
+      Logout
+    </button>
+  </MenuItem>
+</Menu>
+`;
