@@ -64,7 +64,7 @@ const mockedData = {
   ]
 };
 
-jest.mock('../../services/HTTPService', () => ({
+jest.mock('../../services/HTTPService/HTTPService', () => ({
   request: () =>
     new Promise((resolve) => {
       resolve(mockedData);

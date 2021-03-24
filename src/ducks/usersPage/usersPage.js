@@ -1,4 +1,4 @@
-import HTTPService from '../../services/HTTPService';
+import HTTPService from '../../services/HTTPService/HTTPService';
 
 export const REQUESTED_USERS = 'users_page/requested';
 export const RECEIVED_USERS = 'users_page/received';

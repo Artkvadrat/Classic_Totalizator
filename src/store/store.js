@@ -4,11 +4,15 @@ import thunkMiddleware from 'redux-thunk';
 import eventsReducer from '../ducks/events/events';
 import loginPageReducer from '../ducks/loginPage/loginPage';
 import usersPageReducer from '../ducks/usersPage/usersPage';
+import creatorEventReducer from '../ducks/creatorEvent/creatorEvent';
+import editorEventReducer from '../ducks/editorEvent/editorEvent';
 
 const rootReducer = combineReducers({
   events: eventsReducer,
   loginPage: loginPageReducer,
-  userPage: usersPageReducer
+  usersPage: usersPageReducer,
+  editorEvent: editorEventReducer,
+  creatorEvent: creatorEventReducer
 });
 
 const composeEnhancers =

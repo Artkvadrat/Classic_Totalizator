@@ -12,14 +12,14 @@ import reducer, {
   LOGOUT
 } from './loginPage';
 
-jest.mock('../../services/HTTPService', () => ({
+jest.mock('../../services/HTTPService/HTTPService', () => ({
   request: () =>
     new Promise((resolve) => {
       resolve({ jwtString: 'testJwtString' });
     })
 }));
 
-const HTTPService = require('../../services/HTTPService');
+const HTTPService = require('../../services/HTTPService/HTTPService');
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
