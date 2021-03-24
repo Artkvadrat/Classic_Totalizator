@@ -7,7 +7,7 @@ import reducer, {
   RECEIVED_USERS
 } from './usersPage';
 
-jest.mock('../../services/HTTPService', () => ({
+jest.mock('../../services/HTTPService/HTTPService', () => ({
   request: () =>
     new Promise((resolve) => {
       resolve([
@@ -20,7 +20,7 @@ jest.mock('../../services/HTTPService', () => ({
     })
 }));
 
-const HTTPService = require('../../services/HTTPService');
+const HTTPService = require('../../services/HTTPService/HTTPService');
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

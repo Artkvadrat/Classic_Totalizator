@@ -1,4 +1,4 @@
-import HTTPService from '../services/HTTPService';
+import HTTPService from '../services/HTTPService/HTTPService';
 
 const REQUESTED = 'events/requested';
 const RECEIVED = 'events/received';

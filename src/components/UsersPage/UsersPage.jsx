@@ -1,17 +1,49 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Row, Skeleton, Table } from 'antd';
+import parseDate from '../../services/dateParse/dateParse';
 
 import { loadUsers } from '../../ducks/usersPage/usersPage';
 
-const UserPage = () => {
+const UsersPage = () => {
   const dispatch = useDispatch();
 
-  // const { isLoading, userList } = useSelector((state) => state.userPage);
+  const { isLoading, userList } = useSelector((state) => state.usersPage);
+
+  let parsedUserList;
+
+  if (userList.length) {
+    parsedUserList = userList.map(({ email, dob, walletAmount }) => ({
+      email,
+      dob: parseDate(dob),
+      walletAmount
+    }));
+  }
 
   useEffect(() => {
     dispatch(loadUsers());
   }, [dispatch]);
-  return <h1>Hello World!</h1>;
+
+  return isLoading ? (
+    <Skeleton active />
+  ) : (
+    <>
+      <Row justify="start" style={{ margin: 16 }}>
+        <Col span={20}>
+          <h1>Users</h1>
+        </Col>
+      </Row>
+      <Table dataSource={parsedUserList}>
+        <Table.Column title="Creation time" dataIndex="dob" key="dob" />
+        <Table.Column title="User Email" dataIndex="email" key="email" />
+        <Table.Column
+          title="Wallet"
+          dataIndex="walletAmount"
+          key="walletAmount"
+        />
+      </Table>
+    </>
+  );
 };
 
-export default UserPage;
+export default UsersPage;

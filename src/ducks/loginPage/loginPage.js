@@ -1,4 +1,4 @@
-import HTTPService from '../../services/HTTPService';
+import HTTPService from '../../services/HTTPService/HTTPService';
 
 export const REQUESTED_JWT_TOKEN = 'login_page/requested';
 export const RECEIVED_JWT_TOKEN = 'login_page/received';

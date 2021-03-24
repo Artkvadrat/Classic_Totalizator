@@ -8,7 +8,7 @@ import usersPageReducer from '../ducks/usersPage/usersPage';
 const rootReducer = combineReducers({
   events: eventsReducer,
   loginPage: loginPageReducer,
-  userPage: usersPageReducer
+  usersPage: usersPageReducer
 });
 
 const composeEnhancers =
