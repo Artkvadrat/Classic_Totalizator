@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-import eventsReducer from '../ducks/events';
+import eventsReducer from '../ducks/events/events';
 import loginPageReducer from '../ducks/loginPage/loginPage';
 import usersPageReducer from '../ducks/usersPage/usersPage';
 import creatorEventReducer from '../ducks/creatorEvent/creatorEvent';

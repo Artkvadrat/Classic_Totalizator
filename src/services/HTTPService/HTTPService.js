@@ -1,5 +1,3 @@
-// const END_POINT = '';
-
 const END_POINT = 'https://classic-totalizator-ajg2w.ondigitalocean.app';
 
 export default class HTTPService {

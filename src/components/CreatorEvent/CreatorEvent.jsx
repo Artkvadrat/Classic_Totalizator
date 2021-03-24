@@ -20,6 +20,7 @@ const CreatorEvent = () => {
   useEffect(() => {
     dispatch(loadData());
   }, [dispatch]);
+
   const handleChange = (event) => {
     const fieldName = event.target.name;
     const fieldValue =
