@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Col, Row, Skeleton, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUsers } from '../../ducks/usersPage/usersPage';
+import parseDate from '../../services/dateParse/dateParse';
 
 import '../../setupTests';
 
@@ -18,6 +18,8 @@ jest.mock('../../ducks/usersPage/usersPage', () => ({
   loadUsers: jest.fn()
 }));
 
+jest.mock('../../services/dateParse/dateParse', () => jest.fn());
+
 describe('UsersPage component', () => {
   const dispatch = jest.fn();
   const mockedLoadUsers = jest.fn();
@@ -28,8 +30,8 @@ describe('UsersPage component', () => {
       function () {
         return {
           matches: false,
-          addListener: function () {},
-          removeListener: function () {}
+          addListener: () => {},
+          removeListener: () => {}
         };
       };
   });
@@ -57,9 +59,18 @@ describe('UsersPage component', () => {
 
   it('should dispatch event loadUsers on mount', () => {
     useSelector.mockReturnValueOnce({ isLoading: false, userList: [] });
-    const wrapper = mount(<UsersPage />);
+    mount(<UsersPage />);
     expect(dispatch).toHaveBeenCalled();
     expect(dispatch).toHaveBeenCalledWith(loadUsers());
     expect(loadUsers).toHaveBeenCalled();
+  });
+
+  it('should call parseDate function', () => {
+    useSelector.mockReturnValueOnce({
+      isLoading: false,
+      userList: [{ email: 'test', dob: 'test', walletAmount: 0 }]
+    });
+    shallow(<UsersPage />);
+    expect(parseDate).toHaveBeenCalled();
   });
 });
