@@ -92,7 +92,8 @@ const reducer = (state = initialState, action) => {
       window.localStorage.clear();
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        isLoggedIn: false
       };
     case LOGOUT:
       window.localStorage.clear();

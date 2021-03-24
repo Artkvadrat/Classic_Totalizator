@@ -23,7 +23,7 @@ export const clearEvent = () => ({
 
 export const loadData = (id) => (dispatch) =>
   HTTPService.request({
-    path: `/api/Events/getById/${id}`
+    path: `/api/Events/event/${id}`
   }).then((data) => {
     dispatch(loadedEvent(data));
   });
@@ -38,8 +38,8 @@ export const changeFieldEvent = (fieldName, fieldValue) => (dispatch) => {
 
 export const saveEvent = (data) => {
   HTTPService.request({
-    method: 'PATCH',
-    path: '/api/Events/patchEvent',
+    method: 'PUT',
+    path: '/api/Events/edit',
     body: { ...data }
   });
 };
