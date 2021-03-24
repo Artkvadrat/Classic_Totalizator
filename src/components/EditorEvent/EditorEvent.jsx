@@ -18,7 +18,7 @@ const CreatorEvent = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(loadData(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const handleChange = (event) => {
     const fieldName = event.target.name;
