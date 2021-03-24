@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Skeleton, Table, Row, Col, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { getEvents } from '../../ducks/events';
+import { getEvents } from '../../ducks/events/events';
 import EventFinish from '../EventFinish/EventFinish';
 import eventPoolSelector from './EventPool.selector';
 
