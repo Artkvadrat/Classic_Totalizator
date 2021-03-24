@@ -1,11 +1,14 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+
 import eventsReducer from '../ducks/events/events';
-import loginPage from '../ducks/loginPage/loginPage';
+import loginPageReducer from '../ducks/loginPage/loginPage';
+import usersPageReducer from '../ducks/usersPage/usersPage';
 
 const rootReducer = combineReducers({
   events: eventsReducer,
-  loginPage
+  loginPage: loginPageReducer,
+  userPage: usersPageReducer
 });
 
 const composeEnhancers =

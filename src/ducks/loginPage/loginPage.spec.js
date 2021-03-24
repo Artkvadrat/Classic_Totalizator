@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 
 import reducer, {
   loginUser,
-  setTokenForAuthorisedUser,
+  testJwtTokenFromLocalStorage,
+  logout,
   REQUESTED_JWT_TOKEN,
   RECEIVED_JWT_TOKEN,
   TESTED_JWT_TOKEN,
-  DENIED_JWT_TOKEN
+  DENIED_JWT_TOKEN,
+  LOGOUT
 } from './loginPage';
 
 jest.mock('../../services/HTTPService', () => ({
@@ -85,6 +87,20 @@ describe('loginPage reducer', () => {
         isLoggedIn: false
       });
     });
+
+    it('should handle LOGOUT', () => {
+      expect(
+        reducer(
+          { isLoading: false, isLoggedIn: true },
+          {
+            type: LOGOUT
+          }
+        )
+      ).toEqual({
+        isLoading: false,
+        isLoggedIn: false
+      });
+    });
   });
 
   describe('Login with email and password', () => {
@@ -94,7 +110,7 @@ describe('loginPage reducer', () => {
         { type: RECEIVED_JWT_TOKEN, payload: 'testJwtString' }
       ];
 
-      const store = mockStore({ jwtToken: '' });
+      const store = mockStore({ isLoading: false, isLoggedIn: false });
 
       return store
         .dispatch(loginUser({ email: 'email', password: 'password' }))
@@ -110,7 +126,7 @@ describe('loginPage reducer', () => {
         }))
       );
 
-      const store = mockStore({ jwtToken: '' });
+      const store = mockStore({ isLoading: false, isLoggedIn: false });
 
       const expectedActions = [
         { type: REQUESTED_JWT_TOKEN },
@@ -139,10 +155,10 @@ describe('loginPage reducer', () => {
         }
       ];
 
-      const store = mockStore({ jwtToken: '' });
+      const store = mockStore({ isLoading: false, isLoggedIn: false });
 
       return store
-        .dispatch(setTokenForAuthorisedUser('testJwtString'))
+        .dispatch(testJwtTokenFromLocalStorage('testJwtString'))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         });
@@ -161,9 +177,21 @@ describe('loginPage reducer', () => {
       { type: DENIED_JWT_TOKEN }
     ];
 
-    const store = mockStore({ jwtToken: '' });
+    const store = mockStore({ isLoading: false, isLoggedIn: false });
 
-    return store.dispatch(setTokenForAuthorisedUser()).then(() => {
+    return store.dispatch(testJwtTokenFromLocalStorage()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  describe('testing logout function', () => {
+    it('should dispatch logout action', () => {
+      const expectedActions = [{ type: LOGOUT }];
+
+      const store = mockStore({ isLoading: false, isLoggedIn: false });
+
+      store.dispatch(logout());
+
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
