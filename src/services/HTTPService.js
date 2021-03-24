@@ -1,5 +1,3 @@
-// const END_POINT = '';
-
 const END_POINT = 'https://classic-totalizator-ajg2w.ondigitalocean.app';
 
 export default class HTTPService {
@@ -27,21 +25,3 @@ export default class HTTPService {
     });
   }
 }
-
-// import mockedEventsResponse from './mockedEventsResponse';
-
-// export default class HTTPService {
-//   static request({ path }) {
-//     if (path === '/api/Events/feed') {
-//       return new Promise((resolve) => {
-//         setTimeout(() => resolve(mockedEventsResponse), 800);
-//       });
-//     }
-
-//     if (path === '/api/Events/finishEvent') {
-//       return new Promise((resolve) => {
-//         setTimeout(() => resolve(true), 800);
-//       });
-//     }
-//   }
-// }

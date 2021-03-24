@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Select, Button, Space } from 'antd';
 
-import { finishEvent } from '../../ducks/events';
+import { finishEvent } from '../../ducks/events/events';
 
 const EventFinish = ({ possibleResults, id }) => {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const EventFinish = ({ possibleResults, id }) => {
         style={{ width: 130 }}
         onChange={selectHandler}
         defaultValue={selectedOption}
+        value={selectedOption}
       >
         <Select.Option value="Not resolved">Not resolved</Select.Option>
         {possibleResults.map((el) => (

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventFinish component should render without error 1`] = `
+<Space>
+  <ForwardRef(InternalSelect)
+    defaultValue="Not resolved"
+    onChange={[Function]}
+    style={
+      Object {
+        "width": 130,
+      }
+    }
+    value="Not resolved"
+  >
+    <Option
+      value="Not resolved"
+    >
+      Not resolved
+    </Option>
+    <Option
+      key="W1"
+      value="W1"
+    >
+      W1
+    </Option>
+    <Option
+      key="X"
+      value="X"
+    >
+      X
+    </Option>
+    <Option
+      key="W2"
+      value="W2"
+    >
+      W2
+    </Option>
+  </ForwardRef(InternalSelect)>
+  <Button
+    disabled={true}
+    onClick={[Function]}
+    type="primary"
+  >
+    Finish
+  </Button>
+</Space>
+`;

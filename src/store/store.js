@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import eventsReducer from '../ducks/events';
+import eventsReducer from '../ducks/events/events';
 import loginPage from '../ducks/loginPage/loginPage';
 
 const rootReducer = combineReducers({
