@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditorEvent component should render form 1`] = `
+<form
+  className="form-editor"
+  onSubmit={[Function]}
+>
+  <span
+    className="title-value"
+  >
+    Edit event
+  </span>
+  <span>
+    Вкажіть маржу, %
+  </span>
+  <input
+    className="margin-value"
+    name="margin"
+    onChange={[Function]}
+    type="number"
+    value={5}
+  />
+  <span>
+    Вкажіть дату та час початку події
+  </span>
+  <input
+    className="start-data"
+    name="startTime"
+    onChange={[Function]}
+    required={true}
+    type="datetime-local"
+    value="2021-05-24T04:55:03"
+  />
+  <input
+    className="create-action"
+    type="submit"
+    value="Зберегти зміни"
+  />
+</form>
+`;

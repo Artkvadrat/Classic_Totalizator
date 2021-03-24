@@ -9,6 +9,8 @@ import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import UsersPage from './components/UsersPage/UsersPage';
 import EventPool from './components/EventPool/EventPool';
 import LoginPage from './components/LoginPage/LoginPage';
+import CreatorEvent from './components/CreatorEvent/CreatorEvent';
+import EditorEvent from './components/EditorEvent/EditorEvent';
 
 const App = () => {
   const { isLoggedIn } = useSelector((state) => state.loginPage);
@@ -32,13 +34,11 @@ const App = () => {
           </Route>
 
           <Route path="/create">
-            Component for create event
-            {/* <EventCreate /> */}
+            <CreatorEvent />
           </Route>
 
           <Route path="/edit/:id">
-            Component for edit event
-            {/* <EventEdit /> */}
+            <EditorEvent />
           </Route>
 
           <Route path="/users">

@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreatorEvent component should render form 1`] = `
+<form
+  className="form-creator"
+  onSubmit={[Function]}
+>
+  <span
+    className="sport-name"
+  >
+    UFC
+  </span>
+  <span>
+    Виберіть першу команду/учасника події
+  </span>
+  <select
+    className="player-selector"
+    name="participant_Id1"
+    onChange={[Function]}
+    value="2"
+  >
+    <option
+      className="player1-option"
+      key="2"
+      value="2"
+    >
+      vlad
+    </option>
+    <option
+      className="player1-option"
+      key="3"
+      value="3"
+    >
+      vova
+    </option>
+  </select>
+  <span>
+    Виберіть другу команду/учасника події
+  </span>
+  <select
+    className="player-selector"
+    name="participant_Id2"
+    onChange={[Function]}
+    value="3"
+  >
+    <option
+      className="player2-option"
+      key="2"
+      value="2"
+    >
+      vlad
+    </option>
+    <option
+      className="player2-option"
+      key="3"
+      value="3"
+    >
+      vova
+    </option>
+  </select>
+  <span>
+    Вкажіть маржу, %
+  </span>
+  <input
+    className="margin-value"
+    name="margin"
+    onChange={[Function]}
+    type="number"
+    value={5}
+  />
+  <span>
+    Вкажіть дату та час початку події
+  </span>
+  <input
+    className="start-data"
+    name="startTime"
+    onChange={[Function]}
+    required={true}
+    type="datetime-local"
+    value="2021-03-23T05:50:49"
+  />
+  <input
+    className="create-action"
+    type="submit"
+    value="Створити нову подію"
+  />
+</form>
+`;
+
+exports[`CreatorEvent component should render selects for partisipants 1`] = `
+<form
+  className="form-creator"
+  onSubmit={[Function]}
+>
+  <span
+    className="sport-name"
+  >
+    UFC
+  </span>
+  <span>
+    Виберіть першу команду/учасника події
+  </span>
+  <select
+    className="player-selector"
+    name="participant_Id1"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      className="player1-option"
+      key="2"
+      value="2"
+    >
+      vlad
+    </option>
+    <option
+      className="player1-option"
+      key="3"
+      value="3"
+    >
+      vova
+    </option>
+  </select>
+  <span>
+    Виберіть другу команду/учасника події
+  </span>
+  <select
+    className="player-selector"
+    name="participant_Id2"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      className="player2-option"
+      key="2"
+      value="2"
+    >
+      vlad
+    </option>
+    <option
+      className="player2-option"
+      key="3"
+      value="3"
+    >
+      vova
+    </option>
+  </select>
+  <span>
+    Вкажіть маржу, %
+  </span>
+  <input
+    className="margin-value"
+    name="margin"
+    onChange={[Function]}
+    type="number"
+    value={5}
+  />
+  <span>
+    Вкажіть дату та час початку події
+  </span>
+  <input
+    className="start-data"
+    name="startTime"
+    onChange={[Function]}
+    required={true}
+    type="datetime-local"
+    value="2021-03-23T05:50:49"
+  />
+  <input
+    className="create-action"
+    type="submit"
+    value="Створити нову подію"
+  />
+</form>
+`;
