@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<Fragment>
+  <Row
+    justify="end"
+    style={
+      Object {
+        "margin": 16,
+      }
+    }
+  >
+    <Col
+      span={20}
+    >
+      <h1>
+        All events
+      </h1>
+    </Col>
+    <Col
+      span={2}
+    >
+      <withConfigConsumer(Statistic)
+        title="Total"
+        value={5}
+      />
+    </Col>
+    <Col
+      span={2}
+    >
+      <withConfigConsumer(Statistic)
+        title="Unfinished"
+        value={3}
+      />
+    </Col>
+  </Row>
+  <Table
+    dataSource={
+      Array [
+        Object {
+          "date": "20:13 22.03",
+          "isEnded": false,
+          "key": "593aa557-5af8-472d-ac3d-fe674ce7da67",
+          "margin": "2%",
+          "player1": "Hammes - Bode",
+          "player2": "Gwen Greenholt",
+          "possibleResults": Array [
+            "W1",
+            "X",
+            "W2",
+          ],
+          "sport": "Joany_Green",
+        },
+        Object {
+          "date": "12:36 23.03",
+          "isEnded": true,
+          "key": "40dca2cb-af06-4711-b03b-830387a7a6e9",
+          "margin": "5.1%",
+          "player1": "Beier Group",
+          "player2": "Klocko - Champlin",
+          "possibleResults": Array [
+            "W1",
+            "W2",
+          ],
+          "sport": "UFC",
+        },
+        Object {
+          "date": "03:01 25.03",
+          "isEnded": false,
+          "key": "868495b6-5d41-4209-9087-5720af12e352",
+          "margin": "25%",
+          "player1": "Herman Barton",
+          "player2": "Gwen Greenholt",
+          "possibleResults": Array [
+            "W1",
+            "X",
+            "W2",
+          ],
+          "sport": "UFC",
+        },
+        Object {
+          "date": "13:21 25.03",
+          "isEnded": true,
+          "key": "ce1c4820-f3f5-4332-87e0-58cc6a757972",
+          "margin": "1.5%",
+          "player1": "string",
+          "player2": "Kulas Inc",
+          "possibleResults": Array [
+            "W1",
+            "X",
+            "W2",
+          ],
+          "sport": "football",
+        },
+        Object {
+          "date": "08:29 26.03",
+          "isEnded": false,
+          "key": "e774d7eb-d373-4291-b1c4-813487b25bcf",
+          "margin": "3%",
+          "player1": "Kathryn Effertz",
+          "player2": "Lyle Russel",
+          "possibleResults": Array [
+            "W1",
+            "X",
+            "W2",
+          ],
+          "sport": "UFC",
+        },
+      ]
+    }
+    rowKey="key"
+  >
+    <Column
+      dataIndex="date"
+      key="date"
+      title="Time"
+    />
+    <Column
+      dataIndex="sport"
+      key="sport"
+      title="Sport"
+    />
+    <Column
+      dataIndex="player1"
+      key="player1"
+      title="Player 1"
+    />
+    <Column
+      dataIndex="player2"
+      key="player2"
+      title="Player 2"
+    />
+    <Column
+      dataIndex="margin"
+      key="margin"
+      title="Margin"
+    />
+    <Column
+      filters={
+        Array [
+          Object {
+            "text": "Not Resolved",
+            "value": "Not Resolved",
+          },
+        ]
+      }
+      key="status"
+      onFilter={[Function]}
+      render={[Function]}
+      title="Event Status"
+    />
+    <Column
+      key="action"
+      render={[Function]}
+      title="Action"
+    />
+  </Table>
+</Fragment>
+`;
+
+exports[`EventPool component should render results with no data 1`] = `
+<Fragment>
+  <Row
+    justify="end"
+    style={
+      Object {
+        "margin": 16,
+      }
+    }
+  >
+    <Col
+      span={20}
+    >
+      <h1>
+        All events
+      </h1>
+    </Col>
+    <Col
+      span={2}
+    >
+      <withConfigConsumer(Statistic)
+        title="Total"
+        value={0}
+      />
+    </Col>
+    <Col
+      span={2}
+    >
+      <withConfigConsumer(Statistic)
+        title="Unfinished"
+        value={0}
+      />
+    </Col>
+  </Row>
+  <Table
+    dataSource={Array []}
+    rowKey="key"
+  >
+    <Column
+      dataIndex="date"
+      key="date"
+      title="Time"
+    />
+    <Column
+      dataIndex="sport"
+      key="sport"
+      title="Sport"
+    />
+    <Column
+      dataIndex="player1"
+      key="player1"
+      title="Player 1"
+    />
+    <Column
+      dataIndex="player2"
+      key="player2"
+      title="Player 2"
+    />
+    <Column
+      dataIndex="margin"
+      key="margin"
+      title="Margin"
+    />
+    <Column
+      filters={
+        Array [
+          Object {
+            "text": "Not Resolved",
+            "value": "Not Resolved",
+          },
+        ]
+      }
+      key="status"
+      onFilter={[Function]}
+      render={[Function]}
+      title="Event Status"
+    />
+    <Column
+      key="action"
+      render={[Function]}
+      title="Action"
+    />
+  </Table>
+</Fragment>
+`;
+
+exports[`EventPool component should render skeleton if loading in progress 1`] = `
+<Skeleton
+  active={true}
+  avatar={false}
+  paragraph={true}
+  title={true}
+/>
+`;
