@@ -16,7 +16,7 @@ export const loadUsers = () => (dispatch) => {
   dispatch(requestedUsers());
 
   return HTTPService.request({
-    path: '/api/v1/account'
+    path: '/api/Account'
   }).then((data) => dispatch(receivedUsers(data)));
 };
 
