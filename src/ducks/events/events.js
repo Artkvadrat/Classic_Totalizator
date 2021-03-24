@@ -20,19 +20,17 @@ const finish = (data) => ({
 
 export const finishEvent = (data) => (dispatch) =>
   HTTPService.request({
-    method: 'PATCH',
-    path: '/api/Events/finishEvent',
+    method: 'PUT',
+    path: '/api/Events/finish',
     body: data
   }).then(dispatch(finish(data)));
 
 export const getEvents = () => (dispatch) => {
   dispatch(requested());
 
-  return HTTPService.request({ path: '/api/Events/getAllEvents' }).then(
-    (data) => {
-      dispatch(received(data));
-    }
-  );
+  return HTTPService.request({ path: '/api/Events' }).then((data) => {
+    dispatch(received(data));
+  });
 };
 
 const initialState = {

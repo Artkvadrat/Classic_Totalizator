@@ -25,11 +25,11 @@ export const clear = () => ({
 });
 
 export const loadData = () => (dispatch) => {
-  const loadSport = () => HTTPService.request({ path: '/api/Sports/sports' });
+  const loadSport = () => HTTPService.request({ path: '/api/Sports' });
 
   const loadParticipants = () =>
     HTTPService.request({
-      path: '/api/Participants/participants'
+      path: '/api/Participants'
     });
 
   return Promise.all([loadParticipants(), loadSport()]).then((data) => {
@@ -48,7 +48,7 @@ export const changeFieldEvent = (fieldName, fieldValue) => (dispatch) => {
 export const createEvent = (data) => {
   HTTPService.request({
     method: 'POST',
-    path: '/api/Events/createEvent',
+    path: '/api/Events',
     body: { ...data }
   });
 };
