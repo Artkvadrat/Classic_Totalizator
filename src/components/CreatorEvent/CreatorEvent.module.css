@@ -1,0 +1,62 @@
+.form-creator {
+    max-width: 500px;
+    background-color: #CFCFCF;
+    margin: 50px auto;
+    padding: 15px;
+}
+input {
+    outline: none;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #000;
+}
+span,
+.sport-name,
+.margin-value,
+.create-action {
+    display: block;
+}
+.sport-name {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.outcome-selector,
+.player-selector {
+    min-width: 180px;
+    border-radius: 4px;
+    outline: none;
+    padding: 5px;
+    margin: 5px 0 10px;
+}
+.margin-value,
+.start-data,
+.start-time {
+    margin: 5px 0 10px;
+}
+
+.start-data {
+    margin-right: 10px;
+}
+
+.create-action {
+    min-width: 150px;
+    margin: 35px auto 0;
+    background-color: blue;
+    cursor: pointer;
+    color: #fff;
+}
+.create-action:hover {
+    background-color: green;
+}
+.possible-results {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.possible-results span{
+    margin: 5px 10px 0 0;
+    align-items: center;
+}
