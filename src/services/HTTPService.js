@@ -19,7 +19,7 @@ export default class HTTPService {
     };
 
     return fetch(url, options).then((res) => {
-      if ([401, 403].includes(res.status)) {
+      if ([401, 403, 400].includes(res.status)) {
         throw new Error('Invalid data');
       }
 
