@@ -24,16 +24,18 @@ export const clear = () => ({
   type: CLEAR_DATA
 });
 
-const loadSport = HTTPService.request({ path: '/api/Sports/sports' });
+export const loadData = () => (dispatch) => {
+  const loadSport = () => HTTPService.request({ path: '/api/Sports/sports' });
 
-const loadPartisipats = HTTPService.request({
-  path: '/api/Participants/participants'
-});
+  const loadParticipants = () =>
+    HTTPService.request({
+      path: '/api/Participants/participants'
+    });
 
-export const loadData = () => (dispatch) =>
-  Promise.all([loadPartisipats, loadSport]).then((data) => {
+  return Promise.all([loadParticipants(), loadSport()]).then((data) => {
     dispatch(loaded(data));
   });
+};
 
 export const clearData = () => (dispatch) => {
   dispatch(clear());
