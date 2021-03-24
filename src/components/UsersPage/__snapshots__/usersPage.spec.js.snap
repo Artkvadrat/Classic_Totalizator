@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UsersPage component should render Skeleton without errors 1`] = `
+<Skeleton
+  active={true}
+  avatar={false}
+  paragraph={true}
+  title={true}
+/>
+`;
+
+exports[`UsersPage component should render list without errors 1`] = `
+<Fragment>
+  <Row
+    justify="start"
+    style={
+      Object {
+        "margin": 16,
+      }
+    }
+  >
+    <Col
+      span={20}
+    >
+      <h1>
+        Users
+      </h1>
+    </Col>
+  </Row>
+  <Table
+    rowKey="key"
+  >
+    <Column
+      dataIndex="dob"
+      key="dob"
+      title="Creation time"
+    />
+    <Column
+      dataIndex="email"
+      key="email"
+      title="User Email"
+    />
+    <Column
+      dataIndex="walletAmount"
+      key="walletAmount"
+      title="Wallet"
+    />
+  </Table>
+</Fragment>
+`;
