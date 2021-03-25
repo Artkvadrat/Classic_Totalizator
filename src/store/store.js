@@ -6,13 +6,15 @@ import loginPageReducer from '../ducks/loginPage/loginPage';
 import usersPageReducer from '../ducks/usersPage/usersPage';
 import creatorEventReducer from '../ducks/creatorEvent/creatorEvent';
 import editorEventReducer from '../ducks/editorEvent/editorEvent';
+import createParticipantReducer from '../ducks/createParticipant/createParticipant';
 
 const rootReducer = combineReducers({
   events: eventsReducer,
   loginPage: loginPageReducer,
   usersPage: usersPageReducer,
   editorEvent: editorEventReducer,
-  creatorEvent: creatorEventReducer
+  creatorEvent: creatorEventReducer,
+  createParticipant: createParticipantReducer
 });
 
 const composeEnhancers =
