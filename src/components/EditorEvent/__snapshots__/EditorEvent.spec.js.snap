@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EditorEvent component should render Skeleton without 1`] = `
+<Skeleton
+  active={true}
+  avatar={false}
+  paragraph={true}
+  title={true}
+/>
+`;
+
 exports[`EditorEvent component should render form 1`] = `
 <form
   className="form-editor"
@@ -8,10 +17,10 @@ exports[`EditorEvent component should render form 1`] = `
   <span
     className="title-value"
   >
-    Edit event
+    Change event
   </span>
   <span>
-    Вкажіть маржу, %
+    Enter the margin, %
   </span>
   <input
     className="margin-value"
@@ -21,7 +30,7 @@ exports[`EditorEvent component should render form 1`] = `
     value={5}
   />
   <span>
-    Вкажіть дату та час початку події
+    Enter the date of event
   </span>
   <input
     className="start-data"
@@ -34,7 +43,7 @@ exports[`EditorEvent component should render form 1`] = `
   <input
     className="create-action"
     type="submit"
-    value="Зберегти зміни"
+    value="Save event"
   />
 </form>
 `;

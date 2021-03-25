@@ -26,7 +26,6 @@ export const clear = () => ({
 
 export const loadData = () => (dispatch) => {
   const loadSport = () => HTTPService.request({ path: '/api/Sports' });
-
   const loadParticipants = () =>
     HTTPService.request({
       path: '/api/Participants'
@@ -37,21 +36,18 @@ export const loadData = () => (dispatch) => {
   });
 };
 
-export const clearData = () => (dispatch) => {
-  dispatch(clear());
-};
-
 export const changeFieldEvent = (fieldName, fieldValue) => (dispatch) => {
   dispatch(changed(fieldName, fieldValue));
 };
 
-export const createEvent = (data) => {
+export const createEvent = (data) => (dispatch) =>
   HTTPService.request({
     method: 'POST',
     path: '/api/Events',
     body: { ...data }
+  }).then(() => {
+    dispatch(clear());
   });
-};
 
 const initialState = {
   participants: [],
@@ -63,7 +59,8 @@ const initialState = {
     possibleResults: ['W1', 'X', 'W2'],
     sportId: 1,
     margin: 0
-  }
+  },
+  isLoading: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -71,6 +68,7 @@ const reducer = (state = initialState, action) => {
     case LOADED_DATA:
       return {
         ...state,
+        isLoading: false,
         participants: action.payload.participants,
         sports: action.payload.sports
       };

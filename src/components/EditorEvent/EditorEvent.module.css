@@ -1,8 +1,8 @@
 .form-editor {
     max-width: 500px;
-    background-color: #CFCFCF;
     margin: 50px auto;
     padding: 15px;
+    border: 2px solid #EEECEC;
 }
 input {
     outline: none;

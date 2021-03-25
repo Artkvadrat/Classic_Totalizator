@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CreatorEvent component should render Skeleton without 1`] = `
+<Skeleton
+  active={true}
+  avatar={false}
+  paragraph={true}
+  title={true}
+/>
+`;
+
 exports[`CreatorEvent component should render form 1`] = `
 <form
   className="form-creator"
@@ -11,7 +20,7 @@ exports[`CreatorEvent component should render form 1`] = `
     UFC
   </span>
   <span>
-    Виберіть першу команду/учасника події
+    Select the first participant of event 
   </span>
   <select
     className="player-selector"
@@ -35,7 +44,7 @@ exports[`CreatorEvent component should render form 1`] = `
     </option>
   </select>
   <span>
-    Виберіть другу команду/учасника події
+    Select the second participant of event 
   </span>
   <select
     className="player-selector"
@@ -59,7 +68,7 @@ exports[`CreatorEvent component should render form 1`] = `
     </option>
   </select>
   <span>
-    Вкажіть маржу, %
+    Enter the margin, %
   </span>
   <input
     className="margin-value"
@@ -69,7 +78,7 @@ exports[`CreatorEvent component should render form 1`] = `
     value={5}
   />
   <span>
-    Вкажіть дату та час початку події
+    Enter the date of event
   </span>
   <input
     className="start-data"
@@ -77,12 +86,12 @@ exports[`CreatorEvent component should render form 1`] = `
     onChange={[Function]}
     required={true}
     type="datetime-local"
-    value="2021-03-23T05:50:49"
+    value="2021-05-23T05:50:49"
   />
   <input
     className="create-action"
     type="submit"
-    value="Створити нову подію"
+    value="Create new event"
   />
 </form>
 `;
@@ -98,7 +107,7 @@ exports[`CreatorEvent component should render selects for partisipants 1`] = `
     UFC
   </span>
   <span>
-    Виберіть першу команду/учасника події
+    Select the first participant of event 
   </span>
   <select
     className="player-selector"
@@ -122,7 +131,7 @@ exports[`CreatorEvent component should render selects for partisipants 1`] = `
     </option>
   </select>
   <span>
-    Виберіть другу команду/учасника події
+    Select the second participant of event 
   </span>
   <select
     className="player-selector"
@@ -146,7 +155,7 @@ exports[`CreatorEvent component should render selects for partisipants 1`] = `
     </option>
   </select>
   <span>
-    Вкажіть маржу, %
+    Enter the margin, %
   </span>
   <input
     className="margin-value"
@@ -156,7 +165,7 @@ exports[`CreatorEvent component should render selects for partisipants 1`] = `
     value={5}
   />
   <span>
-    Вкажіть дату та час початку події
+    Enter the date of event
   </span>
   <input
     className="start-data"
@@ -164,12 +173,12 @@ exports[`CreatorEvent component should render selects for partisipants 1`] = `
     onChange={[Function]}
     required={true}
     type="datetime-local"
-    value="2021-03-23T05:50:49"
+    value="2021-05-23T05:50:49"
   />
   <input
     className="create-action"
     type="submit"
-    value="Створити нову подію"
+    value="Create new event"
   />
 </form>
 `;

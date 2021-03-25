@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
+import { Skeleton } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import {
   loadData,
   saveEvent,
-  changeFieldEvent,
-  clearEvent
+  changeFieldEvent
 } from '../../ducks/editorEvent/editorEvent';
 import styles from './EditorEvent.module.css';
 
 const CreatorEvent = () => {
-  const selector = (state) => state.editorEvent;
-  const { event } = useSelector(selector);
+  const { event, isLoading } = useSelector((state) => state.editorEvent);
   const { startTime, margin } = event;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -29,16 +28,17 @@ const CreatorEvent = () => {
   };
   const submit = (e) => {
     e.preventDefault();
-    if (+margin > 0) {
-      saveEvent(event);
-      dispatch(clearEvent());
+    if (+margin > 0 && new Date(startTime) > Date.now()) {
+      dispatch(saveEvent(event));
       history.push('/');
     }
   };
-  return (
+  return isLoading ? (
+    <Skeleton active />
+  ) : (
     <form className={styles['form-editor']} onSubmit={submit}>
-      <span className={styles['title-value']}>Edit event</span>
-      <span>Вкажіть маржу, %</span>
+      <span className={styles['title-value']}>Change event</span>
+      <span>Enter the margin, %</span>
       <input
         className={styles['margin-value']}
         type="number"
@@ -46,7 +46,7 @@ const CreatorEvent = () => {
         value={margin}
         onChange={handleChange}
       />
-      <span>Вкажіть дату та час початку події</span>
+      <span>Enter the date of event</span>
       <input
         className={styles['start-data']}
         type="datetime-local"
@@ -58,7 +58,7 @@ const CreatorEvent = () => {
       <input
         className={styles['create-action']}
         type="submit"
-        value="Зберегти зміни"
+        value="Save event"
       />
     </form>
   );
