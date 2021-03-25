@@ -23,33 +23,31 @@ export const clearEvent = () => ({
 
 export const loadData = (id) => (dispatch) =>
   HTTPService.request({
-    path: `/api/Events/getById/${id}`
+    path: `/api/Events/event/${id}`
   }).then((data) => {
     dispatch(loadedEvent(data));
   });
-
-export const clearData = () => (dispatch) => {
-  dispatch(clearEvent());
-};
 
 export const changeFieldEvent = (fieldName, fieldValue) => (dispatch) => {
   dispatch(changedEvent(fieldName, fieldValue));
 };
 
-export const saveEvent = (data) => {
+export const saveEvent = (data) => (dispatch) =>
   HTTPService.request({
-    method: 'PATCH',
-    path: '/api/Events/patchEvent',
+    method: 'PUT',
+    path: '/api/Events/edit',
     body: { ...data }
+  }).then(() => {
+    dispatch(clearEvent());
   });
-};
 
 const initialState = {
   event: {
     id: '',
     margin: 0,
     startTime: ''
-  }
+  },
+  isLoading: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -57,6 +55,7 @@ const reducer = (state = initialState, action) => {
     case LOADED_EVENT:
       return {
         ...state,
+        isLoading: false,
         event: {
           id: action.payload.id,
           margin: action.payload.margin,

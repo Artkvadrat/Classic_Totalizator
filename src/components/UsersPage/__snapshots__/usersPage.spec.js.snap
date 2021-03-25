@@ -41,6 +41,11 @@ exports[`UsersPage component should render list without errors 1`] = `
       title="User Email"
     />
     <Column
+      dataIndex="username"
+      key="username"
+      title="Username"
+    />
+    <Column
       dataIndex="walletAmount"
       key="walletAmount"
       title="Wallet"

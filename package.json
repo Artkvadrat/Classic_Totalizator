@@ -65,7 +65,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(css)$": "identity-obj-proxy"
+      "\\.(css|png)$": "identity-obj-proxy"
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

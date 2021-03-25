@@ -1,8 +1,8 @@
-import HTTPService from '../services/HTTPService/HTTPService';
+import HTTPService from '../../services/HTTPService/HTTPService';
 
-const REQUESTED = 'events/requested';
-const RECEIVED = 'events/received';
-const FINISH = 'event/finish';
+export const REQUESTED = 'events/requested';
+export const RECEIVED = 'events/received';
+export const FINISH = 'event/finish';
 
 const requested = () => ({
   type: REQUESTED
@@ -18,20 +18,17 @@ const finish = (data) => ({
   payload: data
 });
 
-export const finishEvent = (data) => (dispatch) => {
+export const finishEvent = (data) => (dispatch) =>
   HTTPService.request({
-    method: 'PATCH',
-    path: '/api/Events/finishEvent',
+    method: 'PUT',
+    path: '/api/Events/finish',
     body: data
-  });
-
-  dispatch(finish(data));
-};
+  }).then(dispatch(finish(data)));
 
 export const getEvents = () => (dispatch) => {
   dispatch(requested());
 
-  HTTPService.request({ path: '/api/Events/feed' }).then((data) => {
+  return HTTPService.request({ path: '/api/Events' }).then((data) => {
     dispatch(received(data));
   });
 };

@@ -33,7 +33,7 @@ export const loginUser = ({ email, password }) => (dispatch) => {
 
   return HTTPService.request({
     method: 'POST',
-    path: '/api/v1/auth/admin/login',
+    path: '/api/Auth/admin/login',
     body: {
       login: email,
       password
@@ -92,7 +92,8 @@ const reducer = (state = initialState, action) => {
       window.localStorage.clear();
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        isLoggedIn: false
       };
     case LOGOUT:
       window.localStorage.clear();

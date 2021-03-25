@@ -1,5 +1,3 @@
-// const END_POINT = '';
-
 const END_POINT = 'https://classic-totalizator-ajg2w.ondigitalocean.app';
 
 export default class HTTPService {
@@ -19,7 +17,7 @@ export default class HTTPService {
     };
 
     return fetch(url, options).then((res) => {
-      if ([401, 403, 400].includes(res.status)) {
+      if ([401, 403, 400, 404].includes(res.status)) {
         throw new Error('Invalid data');
       }
 

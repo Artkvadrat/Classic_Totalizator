@@ -13,8 +13,9 @@ const UsersPage = () => {
   let parsedUserList;
 
   if (userList.length) {
-    parsedUserList = userList.map(({ email, dob, walletAmount }) => ({
+    parsedUserList = userList.map(({ email, username, dob, walletAmount }) => ({
       email,
+      username,
       dob: parseDate(dob),
       walletAmount
     }));
@@ -36,6 +37,7 @@ const UsersPage = () => {
       <Table dataSource={parsedUserList}>
         <Table.Column title="Creation time" dataIndex="dob" key="dob" />
         <Table.Column title="User Email" dataIndex="email" key="email" />
+        <Table.Column title="Username" dataIndex="username" key="username" />
         <Table.Column
           title="Wallet"
           dataIndex="walletAmount"

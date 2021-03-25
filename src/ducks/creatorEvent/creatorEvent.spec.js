@@ -1,19 +1,17 @@
 import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-const HTTPService = require('../../services/HTTPService/HTTPService');
 
 import reducer, {
   changeFieldEvent,
   loadData,
-  clearData,
   createEvent,
   CHANGED_FIELD,
   CLEAR_DATA,
   LOADED_DATA
 } from './creatorEvent';
 
-const mockedData = [{}, {}];
+const mockedData = {};
 jest.mock('../../services/HTTPService/HTTPService', () => ({
   request: () =>
     new Promise((resolve) => {
@@ -28,7 +26,7 @@ describe('Testing actions', () => {
   let store;
   beforeEach(() => {
     store = mockStore({
-      participants: [],
+      participants: [{}, {}],
       sports: [{}],
       addEvent: {
         participant_Id1: '',
@@ -37,7 +35,8 @@ describe('Testing actions', () => {
         possibleResults: ['W1', 'X', 'W2'],
         sportId: 1,
         margin: 0
-      }
+      },
+      isLoading: true
     });
   });
 
@@ -63,32 +62,16 @@ describe('Testing actions', () => {
     store.dispatch(changeFieldEvent(fieldName, fieldValue));
     expect(store.getActions()).toEqual(expectedActions);
   });
-  it('should clear event data', () => {
+  it('should save event and clear data', () => {
     const expectedActions = [{ type: CLEAR_DATA }];
-    store.dispatch(clearData());
-    expect(store.getActions()).toEqual(expectedActions);
+
+    store.dispatch(createEvent()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 });
 
-describe('Testing creating event', () => {
-  it('should make request', () => {
-    const event = {
-      participant_Id1: 'dwadewdewxd',
-      participant_Id2: 'ewdwdewd',
-      startTime: '',
-      possibleResults: ['W1', 'X', 'W2'],
-      sportId: 1,
-      margin: 10
-    };
-    HTTPService.request = jest.fn();
-
-    createEvent(event);
-
-    expect(HTTPService.request).toHaveBeenCalled();
-  });
-});
-
-describe(' reducer', () => {
+describe(' reducer of creator events', () => {
   let initialState;
   beforeEach(() => {
     initialState = {
@@ -101,7 +84,8 @@ describe(' reducer', () => {
         possibleResults: ['W1', 'X', 'W2'],
         sportId: 1,
         margin: 0
-      }
+      },
+      isLoading: true
     };
   });
   it('should return the initial state', () => {
@@ -127,7 +111,8 @@ describe(' reducer', () => {
         possibleResults: ['W1', 'X', 'W2'],
         sportId: 1,
         margin: 0
-      }
+      },
+      isLoading: false
     });
   });
   it('should handle CHANGED_FIELD', () => {
@@ -149,7 +134,8 @@ describe(' reducer', () => {
         possibleResults: ['W1', 'X', 'W2'],
         sportId: 1,
         margin: 10
-      }
+      },
+      isLoading: true
     });
   });
   it('should handle CLEAR_DATA', () => {
@@ -165,7 +151,8 @@ describe(' reducer', () => {
             possibleResults: ['W1', 'X', 'W2'],
             sportId: 1,
             margin: 10
-          }
+          },
+          isLoading: false
         },
         { type: CLEAR_DATA }
       )
@@ -177,3 +164,4 @@ describe(' reducer', () => {
     );
   });
 });
+
