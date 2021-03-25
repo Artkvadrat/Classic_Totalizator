@@ -3,13 +3,14 @@ import React, { useEffect } from 'react';
 import { Skeleton } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
+
 import {
   loadData,
   createEvent,
   changeFieldEvent
 } from '../../ducks/creatorEvent/creatorEvent';
 import selector from './selector/CreatorEvent.selector';
-
 import styles from './CreatorEvent.module.css';
 
 const CreatorEvent = () => {
@@ -29,6 +30,7 @@ const CreatorEvent = () => {
 
     dispatch(changeFieldEvent(fieldName, fieldValue));
   };
+
   const submit = (e) => {
     e.preventDefault();
     let isFullForm = false;
@@ -55,15 +57,19 @@ const CreatorEvent = () => {
       isFullForm = true;
     }
     if (isFullForm) {
-      dispatch(createEvent(event));
+      dispatch(
+        createEvent({ ...event, startTime: moment(startTime).format() })
+      );
       history.push('/');
     }
   };
+
   return isLoading ? (
     <Skeleton active />
   ) : (
     <form className={styles['form-creator']} onSubmit={submit}>
       <span className={styles['sport-name']}>{sports[0].name}</span>
+
       <span>Select the first participant of event </span>
       <select
         className={styles['player-selector']}
@@ -78,6 +84,7 @@ const CreatorEvent = () => {
           </option>
         ))}
       </select>
+
       <span>Select the second participant of event </span>
       <select
         className={styles['player-selector']}
@@ -92,6 +99,7 @@ const CreatorEvent = () => {
           </option>
         ))}
       </select>
+
       <span>Enter the margin, %</span>
       <input
         className={styles['margin-value']}
@@ -100,6 +108,7 @@ const CreatorEvent = () => {
         value={margin}
         onChange={handleChange}
       />
+
       <span>Enter the date of event</span>
       <input
         className={styles['start-data']}
@@ -109,6 +118,7 @@ const CreatorEvent = () => {
         required
         onChange={handleChange}
       />
+
       <input
         className={styles['create-action']}
         type="submit"
