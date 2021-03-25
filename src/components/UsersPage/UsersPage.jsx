@@ -17,7 +17,8 @@ const UsersPage = () => {
       email,
       username,
       dob: parseDate(dob),
-      walletAmount
+      walletAmount,
+      key: email
     }));
   }
 
