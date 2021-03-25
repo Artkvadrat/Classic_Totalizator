@@ -23,7 +23,7 @@ export const clearEvent = () => ({
 
 export const loadData = (id) => (dispatch) =>
   HTTPService.request({
-    path: `/api/Events/event/${id}`
+    path: `/api/Events/${id}`
   }).then((data) => {
     dispatch(loadedEvent(data));
   });
@@ -32,10 +32,10 @@ export const changeFieldEvent = (fieldName, fieldValue) => (dispatch) => {
   dispatch(changedEvent(fieldName, fieldValue));
 };
 
-export const saveEvent = (data) => (dispatch) =>
+export const saveEvent = (data, id) => (dispatch) =>
   HTTPService.request({
     method: 'PUT',
-    path: '/api/Events/edit',
+    path: `/api/Events/${id}/edit`,
     body: { ...data }
   }).then(() => {
     dispatch(clearEvent());
