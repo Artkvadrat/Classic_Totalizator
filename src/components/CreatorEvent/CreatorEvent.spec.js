@@ -28,11 +28,15 @@ jest.mock('../../ducks/creatorEvent/creatorEvent', () => ({
   clearData: jest.fn()
 }));
 
+jest.mock('moment', () => () => ({
+  format: () => new Date()
+}));
+
 describe('CreatorEvent component', () => {
   const history = {
     push: jest.fn()
   };
-  const dispatch = jest.fn();
+  const dispatch = jest.fn(() => Promise.resolve());
 
   beforeEach(() => {
     useDispatch.mockReturnValue(dispatch);
@@ -41,6 +45,7 @@ describe('CreatorEvent component', () => {
     changeFieldEvent.mockReturnValue(Symbol.for('change'));
     createEvent.mockReturnValue(Symbol.for('create'));
     jest.clearAllMocks();
+
     useSelector.mockReturnValue({
       participants: [
         { id: '2', name: 'vlad' },
@@ -61,18 +66,20 @@ describe('CreatorEvent component', () => {
     expect(dispatch).not.toHaveBeenCalled();
     expect(loadData).not.toHaveBeenCalled();
 
-    const result = mount(<CreatorEvent />);
+    mount(<CreatorEvent />);
 
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(Symbol.for('load'));
     expect(loadData).toHaveBeenCalledTimes(1);
   });
+
   it('should render form', () => {
     const result = shallow(<CreatorEvent />);
     const form = result.find('.form-creator');
     expect(form.exists()).toEqual(true);
     expect(result).toMatchSnapshot();
   });
+
   it('should render Skeleton without', () => {
     useSelector.mockReturnValue({
       participants: [
@@ -91,6 +98,7 @@ describe('CreatorEvent component', () => {
     const result = shallow(<CreatorEvent />);
     expect(result).toMatchSnapshot();
   });
+
   it('should create event on submit form', () => {
     const result = shallow(<CreatorEvent />);
     const fakeEvent = {
@@ -106,6 +114,7 @@ describe('CreatorEvent component', () => {
     expect(createEvent).toHaveBeenCalledTimes(1);
     expect(history.push).toHaveBeenCalledTimes(1);
   });
+
   it("shouldn't create event on submit form", () => {
     useSelector.mockReturnValue({
       participants: [
@@ -164,7 +173,7 @@ describe('CreatorEvent component', () => {
     );
     expect(dispatch).toHaveBeenCalledWith(Symbol.for('change'));
   });
-  it('should render selects for partisipants', () => {
+  it('should render selects for participants', () => {
     const participants = [
       { id: '2', name: 'vlad' },
       { id: '3', name: 'vova' }
@@ -186,12 +195,12 @@ describe('CreatorEvent component', () => {
 
     expect(options1.length).toBe(participants.length);
     expect(options2.length).toBe(participants.length);
-    for (let i = 0; i < options1.length; i++) {
+    for (let i = 0; i < options1.length; i += 1) {
       const option = options1.at(i);
       expect(option.prop('value')).toBe(participants[i].id);
     }
 
-    for (let i = 0; i < options2.length; i++) {
+    for (let i = 0; i < options2.length; i += 1) {
       const option = options2.at(i);
       expect(option.prop('value')).toBe(participants[i].id);
     }

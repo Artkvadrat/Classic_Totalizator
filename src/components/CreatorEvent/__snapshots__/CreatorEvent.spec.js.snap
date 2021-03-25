@@ -96,7 +96,7 @@ exports[`CreatorEvent component should render form 1`] = `
 </form>
 `;
 
-exports[`CreatorEvent component should render selects for partisipants 1`] = `
+exports[`CreatorEvent component should render selects for participants 1`] = `
 <form
   className="form-creator"
   onSubmit={[Function]}

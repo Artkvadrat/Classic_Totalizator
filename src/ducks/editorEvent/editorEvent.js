@@ -1,3 +1,4 @@
+import moment from 'moment';
 import HTTPService from '../../services/HTTPService/HTTPService';
 
 export const LOADED_EVENT = 'admin_panel/editor_event/loaded_event';
@@ -59,7 +60,7 @@ const reducer = (state = initialState, action) => {
         event: {
           id: action.payload.id,
           margin: action.payload.margin,
-          startTime: action.payload.startTime.substr(0, 19)
+          startTime: moment(action.payload.startTime).format('YYYY-MM-DDTHH:mm')
         }
       };
     case CHANGED_EVENT:

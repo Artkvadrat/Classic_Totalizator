@@ -20,7 +20,7 @@ const finish = (data) => ({
 
 export const finishEvent = (data) => (dispatch) =>
   HTTPService.request({
-    method: 'PUT',
+    method: 'POST',
     path: '/api/Events/finish',
     body: data
   }).then(dispatch(finish(data)));

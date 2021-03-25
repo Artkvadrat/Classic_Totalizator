@@ -56,7 +56,7 @@ describe('reducer of edditor events', () => {
       event: {
         id: 'ewdwedewdewdwe',
         margin: 9,
-        startTime: '2021-03-24T07:44:17'
+        startTime: '2021-03-24T07:44'
       },
       isLoading: false
     });
