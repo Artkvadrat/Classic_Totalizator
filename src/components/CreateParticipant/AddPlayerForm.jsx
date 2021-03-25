@@ -4,15 +4,30 @@ import PropTypes from 'prop-types';
 
 import AddingParameters from './AddingParameters';
 
-const AddOnePlayerForm = ({
+const AddPlayerForm = ({
   changeShowingForm,
   newParticipant,
-  addNewParameterForPlayer,
-  addData
+  addNewParameters,
+  addData,
+  submitHandler
 }) => {
   const canAddNewParameter = !newParticipant.parameters[
     newParticipant.parameters.length - 1
   ].type;
+
+  const changeNameHandler = (e) => {
+    addData(e.target.value, 'changePlayerName');
+  };
+
+  const changePhotoLinkHandler = (e) => {
+    addData(e.target.value, 'changePlayerPhotoLink');
+  };
+
+  const submitForm = () => {
+    submitHandler('playerSubmit');
+  };
+
+  const addParameter = () => addNewParameters('parameterForPlayer');
 
   return (
     <Row
@@ -38,7 +53,7 @@ const AddOnePlayerForm = ({
           Add team
         </Button>
       </div>
-      <Form layout="vertical">
+      <Form layout="vertical" onFinish={submitForm}>
         <Form.Item
           label="Name"
           name="name"
@@ -49,7 +64,7 @@ const AddOnePlayerForm = ({
             }
           ]}
         >
-          <Input />
+          <Input onChange={changeNameHandler} />
         </Form.Item>
         <Form.Item
           label="Link to photo"
@@ -58,24 +73,29 @@ const AddOnePlayerForm = ({
             {
               required: true,
               message: 'Please enter link to photo'
+            },
+            {
+              pattern: /.png$/,
+              message: 'Enter .png photo please'
             }
           ]}
         >
-          <Input />
+          <Input onChange={changePhotoLinkHandler} />
         </Form.Item>
-        {newParticipant.parameters.map((item, id) => (
-          <AddingParameters
-            key={id}
-            initialData={item}
-            id={id}
-            addData={addData}
-          />
-        ))}
+        <div style={{ textAlign: 'left' }}>
+          <p>Parameters</p>
+          {newParticipant.parameters.map((item, id) => (
+            <AddingParameters
+              key={id}
+              initialData={item}
+              id={id}
+              addData={addData}
+              type="playerParameters"
+            />
+          ))}
+        </div>
         <Form.Item>
-          <Button
-            onClick={addNewParameterForPlayer}
-            disabled={canAddNewParameter}
-          >
+          <Button onClick={addParameter} disabled={canAddNewParameter}>
             Add new parameter
           </Button>
         </Form.Item>
@@ -89,11 +109,12 @@ const AddOnePlayerForm = ({
   );
 };
 
-AddOnePlayerForm.propTypes = {
+AddPlayerForm.propTypes = {
   changeShowingForm: PropTypes.func,
   newParticipant: PropTypes.object,
-  addNewParameterForPlayer: PropTypes.func,
-  addData: PropTypes.func
+  addNewParameters: PropTypes.func,
+  addData: PropTypes.func,
+  submitHandler: PropTypes.func
 };
 
-export default AddOnePlayerForm;
+export default AddPlayerForm;
