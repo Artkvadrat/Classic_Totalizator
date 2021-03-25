@@ -19,9 +19,6 @@ jest.mock('../../services/HTTPService/HTTPService', () => ({
     })
 }));
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-
 describe('Testing actions', () => {
   let store;
   beforeEach(() => {
@@ -39,10 +36,7 @@ describe('Testing actions', () => {
       isLoading: true
     });
   });
-
-  it('should get partisipats and sports', () => {
-    const expectedActions = [{ type: LOADED_DATA, payload: mockedData }];
-
+  
     store.dispatch(loadData()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
@@ -164,4 +158,3 @@ describe(' reducer of creator events', () => {
     );
   });
 });
-
