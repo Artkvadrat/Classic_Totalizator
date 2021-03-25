@@ -36,7 +36,7 @@ describe('Navigation component', () => {
   it('should render 4 menu elements', () => {
     const items = wrapper.find(Menu.Item);
 
-    expect(items.length).toBe(4);
+    expect(items.length).toBe(5);
   });
 
   it('should handle click on button and dispatch logout action', () => {

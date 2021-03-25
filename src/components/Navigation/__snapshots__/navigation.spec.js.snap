@@ -25,6 +25,13 @@ exports[`Navigation component should render without errors 1`] = `
       Users
     </Link>
   </MenuItem>
+  <MenuItem>
+    <Link
+      to="/create-participant"
+    >
+      Create participant
+    </Link>
+  </MenuItem>
   <MenuItem
     style={
       Object {
