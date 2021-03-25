@@ -8,11 +8,16 @@ const participantsSelector = createSelector(
 );
 const sportsSelector = createSelector(dataSelector, ({ sports }) => sports);
 const eventSelector = createSelector(dataSelector, ({ addEvent }) => addEvent);
+const loadingSelector = createSelector(
+  dataSelector,
+  ({ isLoading }) => isLoading
+);
 
 const valuesSelector = createStructuredSelector({
   participants: participantsSelector,
   sports: sportsSelector,
-  addEvent: eventSelector
+  addEvent: eventSelector,
+  isLoading: loadingSelector
 });
 
 export default valuesSelector;

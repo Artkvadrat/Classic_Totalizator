@@ -1,11 +1,9 @@
 import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-const HTTPService = require('../../services/HTTPService/HTTPService');
 
 import reducer, {
   loadData,
-  clearData,
   saveEvent,
   changeFieldEvent,
   CHANGED_EVENT,
@@ -28,7 +26,7 @@ jest.mock('../../services/HTTPService/HTTPService', () => ({
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe(' reducer', () => {
+describe('reducer of edditor events', () => {
   let initialState;
   beforeEach(() => {
     initialState = {
@@ -36,7 +34,8 @@ describe(' reducer', () => {
         id: '',
         margin: 0,
         startTime: ''
-      }
+      },
+      isLoading: true
     };
   });
   it('should return the initial state', () => {
@@ -58,7 +57,8 @@ describe(' reducer', () => {
         id: 'ewdwedewdewdwe',
         margin: 9,
         startTime: '2021-03-24T07:44:17'
-      }
+      },
+      isLoading: false
     });
   });
   it('should handle CHANGED_EVENT', () => {
@@ -75,7 +75,8 @@ describe(' reducer', () => {
         id: '',
         margin: 10,
         startTime: ''
-      }
+      },
+      isLoading: true
     });
   });
   it('should handle CLEAR_EVENT', () => {
@@ -86,7 +87,8 @@ describe(' reducer', () => {
             id: 'erferferf',
             margin: 10,
             startTime: '2021-03-24T07:44:17'
-          }
+          },
+          isLoading: false
         },
         { type: CLEAR_EVENT }
       )
@@ -107,7 +109,8 @@ describe('Testing actions', () => {
         id: '',
         margin: 0,
         startTime: ''
-      }
+      },
+      isLoading: true
     });
   });
 
@@ -133,24 +136,11 @@ describe('Testing actions', () => {
     store.dispatch(changeFieldEvent(fieldName, fieldValue));
     expect(store.getActions()).toEqual(expectedActions);
   });
-  it('should clear event data', () => {
+  it('should save and clear event data', () => {
     const expectedActions = [{ type: CLEAR_EVENT }];
-    store.dispatch(clearData());
-    expect(store.getActions()).toEqual(expectedActions);
-  });
-});
 
-describe('Testing patching event', () => {
-  it('should patch event', () => {
-    const event = {
-      id: 'cddsacsdcdsad3e2d',
-      margin: 14,
-      startTime: '2021-03-24T07:44:17'
-    };
-    HTTPService.request = jest.fn();
-
-    saveEvent(event);
-
-    expect(HTTPService.request).toHaveBeenCalled();
+    store.dispatch(saveEvent()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 });

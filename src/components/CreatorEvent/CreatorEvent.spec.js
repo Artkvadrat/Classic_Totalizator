@@ -5,8 +5,7 @@ import { useHistory } from 'react-router-dom';
 import {
   loadData,
   createEvent,
-  changeFieldEvent,
-  clearData
+  changeFieldEvent
 } from '../../ducks/creatorEvent/creatorEvent';
 
 import '../../setupTests';
@@ -40,7 +39,6 @@ describe('CreatorEvent component', () => {
     useHistory.mockReturnValue(history);
     loadData.mockReturnValue(Symbol.for('load'));
     changeFieldEvent.mockReturnValue(Symbol.for('change'));
-    clearData.mockReturnValue(Symbol.for('clear'));
     createEvent.mockReturnValue(Symbol.for('create'));
     jest.clearAllMocks();
     useSelector.mockReturnValue({
@@ -52,9 +50,10 @@ describe('CreatorEvent component', () => {
       addEvent: {
         participant_Id1: '2',
         participant_Id2: '3',
-        startTime: '2021-03-23T05:50:49',
+        startTime: '2021-05-23T05:50:49',
         margin: 5
-      }
+      },
+      isLoading: false
     });
   });
 
@@ -74,14 +73,25 @@ describe('CreatorEvent component', () => {
     expect(form.exists()).toEqual(true);
     expect(result).toMatchSnapshot();
   });
+  it('should render Skeleton without', () => {
+    useSelector.mockReturnValue({
+      participants: [
+        { id: '2', name: 'vlad' },
+        { id: '3', name: 'vova' }
+      ],
+      sports: [{ id: 1, name: 'UFC' }],
+      addEvent: {
+        participant_Id1: '2',
+        participant_Id2: '3',
+        startTime: '2021-05-23T05:50:49',
+        margin: 5
+      },
+      isLoading: true
+    });
+    const result = shallow(<CreatorEvent />);
+    expect(result).toMatchSnapshot();
+  });
   it('should create event on submit form', () => {
-    const addEvent = {
-      participant_Id1: '2',
-      participant_Id2: '3',
-      startTime: '2021-03-23T05:50:49',
-      margin: 5
-    };
-
     const result = shallow(<CreatorEvent />);
     const fakeEvent = {
       preventDefault: jest.fn()
@@ -91,11 +101,9 @@ describe('CreatorEvent component', () => {
     form.simulate('submit', fakeEvent);
 
     expect(fakeEvent.preventDefault).toHaveBeenCalled();
-    expect(createEvent).toHaveBeenCalledTimes(1);
-    expect(createEvent).toHaveBeenCalledWith(addEvent);
     expect(dispatch).toHaveBeenCalledTimes(1);
-    expect(dispatch).toHaveBeenCalledWith(Symbol.for('clear'));
-    expect(clearData).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith(Symbol.for('create'));
+    expect(createEvent).toHaveBeenCalledTimes(1);
     expect(history.push).toHaveBeenCalledTimes(1);
   });
   it("shouldn't create event on submit form", () => {
@@ -108,9 +116,10 @@ describe('CreatorEvent component', () => {
       addEvent: {
         participant_Id1: '',
         participant_Id2: '',
-        startTime: '2021-03-23T05:50:49',
+        startTime: '2021-05-23T05:50:49',
         margin: 5
-      }
+      },
+      isLoading: false
     });
 
     const result = shallow(<CreatorEvent />);
@@ -121,12 +130,8 @@ describe('CreatorEvent component', () => {
     form.simulate('submit', fakeEvent);
 
     expect(fakeEvent.preventDefault).toHaveBeenCalled();
-    expect(dispatch).toHaveBeenCalledTimes(2);
-    expect(dispatch).toHaveBeenCalledWith(Symbol.for('change'));
-    expect(changeFieldEvent).toHaveBeenCalledTimes(2);
+    expect(dispatch).not.toHaveBeenCalled();
     expect(createEvent).not.toHaveBeenCalled();
-    expect(dispatch).not.toHaveBeenCalledWith(Symbol.for('clear'));
-    expect(clearData).not.toHaveBeenCalled();
     expect(history.push).not.toHaveBeenCalled();
   });
   it('should dispatch changeFieldEvent action on change field form', () => {
@@ -170,9 +175,10 @@ describe('CreatorEvent component', () => {
       addEvent: {
         participant_Id1: '',
         participant_Id2: '',
-        startTime: '2021-03-23T05:50:49',
+        startTime: '2021-05-23T05:50:49',
         margin: 5
-      }
+      },
+      isLoading: false
     });
     const result = shallow(<CreatorEvent />);
     const options1 = result.find('.player1-option');
