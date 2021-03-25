@@ -29,7 +29,7 @@ const CreatorEvent = () => {
   const submit = (e) => {
     e.preventDefault();
     if (+margin > 0 && new Date(startTime) > Date.now()) {
-      dispatch(saveEvent(event));
+      dispatch(saveEvent(event, id));
       history.push('/');
     }
   };
