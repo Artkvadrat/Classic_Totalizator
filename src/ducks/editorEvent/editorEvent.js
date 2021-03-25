@@ -24,7 +24,7 @@ export const clearEvent = () => ({
 
 export const loadData = (id) => (dispatch) =>
   HTTPService.request({
-    path: `/api/Events/event/${id}`
+    path: `/api/Events/${id}`
   }).then((data) => {
     dispatch(loadedEvent(data));
   });

@@ -38,7 +38,7 @@ exports[`EditorEvent component should render form 1`] = `
     onChange={[Function]}
     required={true}
     type="datetime-local"
-    value="2021-05-24T04:55:03"
+    value="2022-05-24T04:55"
   />
   <input
     className="create-action"

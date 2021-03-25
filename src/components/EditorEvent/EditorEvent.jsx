@@ -11,7 +11,7 @@ import {
 } from '../../ducks/editorEvent/editorEvent';
 import styles from './EditorEvent.module.css';
 
-const CreatorEvent = () => {
+const EditorEvent = () => {
   const { event, isLoading } = useSelector((state) => state.editorEvent);
   const { startTime, margin } = event;
   const dispatch = useDispatch();
@@ -32,9 +32,11 @@ const CreatorEvent = () => {
 
   const submit = (e) => {
     e.preventDefault();
+
     if (+margin > 0 && moment(startTime) > Date.now()) {
-      dispatch(saveEvent({ ...event, startTime: moment(startTime).format() }));
-      history.push('/');
+      dispatch(
+        saveEvent({ ...event, startTime: moment(startTime).format() })
+      ).then(history.push('/'));
     }
   };
 
@@ -71,4 +73,4 @@ const CreatorEvent = () => {
     </form>
   );
 };
-export default CreatorEvent;
+export default EditorEvent;
