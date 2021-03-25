@@ -35,7 +35,7 @@ const EditorEvent = () => {
 
     if (+margin > 0 && moment(startTime) > Date.now()) {
       dispatch(
-        saveEvent({ ...event, startTime: moment(startTime).format() })
+        saveEvent({ ...event, startTime: moment(startTime).format() }, id)
       ).then(history.push('/'));
     }
   };

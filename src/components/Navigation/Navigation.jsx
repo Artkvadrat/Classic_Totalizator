@@ -29,6 +29,10 @@ const Navigation = () => {
         <Link to="/users">Users</Link>
       </Menu.Item>
 
+      <Menu.Item>
+        <Link to="/create-participant">Create participant</Link>
+      </Menu.Item>
+
       <Menu.Item style={{ float: 'right' }}>
         <button
           type="button"
