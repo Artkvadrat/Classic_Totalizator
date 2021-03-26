@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddingPlayersInTeam component should render without error 1`] = `
+<FormItem
+  layout="horizontal"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <Input
+      defaultValue="name"
+      name="name"
+      onChange={[Function]}
+      placeholder="Name"
+      style={
+        Object {
+          "marginRight": "8px",
+        }
+      }
+      type="text"
+    />
+    <Button
+      disabled={true}
+      htmlType="button"
+      onClick={[Function]}
+      type="primary"
+    >
+      Add
+    </Button>
+  </div>
+</FormItem>
+`;

@@ -26,7 +26,6 @@ const AddingPlayersInTeam = ({ initialData, id, addData, type }) => {
           name="name"
           defaultValue={data.value}
           onChange={changeHandler}
-          required
           style={{ marginRight: '8px' }}
         />
         <Button

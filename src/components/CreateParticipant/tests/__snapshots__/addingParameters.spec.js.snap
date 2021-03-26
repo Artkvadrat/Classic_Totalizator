@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddingParameters component should render without error 1`] = `
+<FormItem
+  layout="horizontal"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <Input
+      defaultValue="type"
+      name="type"
+      onChange={[Function]}
+      placeholder="Type"
+      type="text"
+    />
+    <Input
+      defaultValue="value"
+      name="value"
+      onChange={[Function]}
+      placeholder="Value"
+      style={
+        Object {
+          "margin": "0 8px",
+        }
+      }
+      type="text"
+    />
+    <Button
+      disabled={true}
+      htmlType="button"
+      onClick={[Function]}
+      type="primary"
+    >
+      Save
+    </Button>
+  </div>
+</FormItem>
+`;

@@ -27,14 +27,12 @@ const AddingParameters = ({ initialData, id, addData, type }) => {
           placeholder="Type"
           defaultValue={data.type}
           onChange={changeHandler}
-          required
         />
         <Input
           name="value"
           placeholder="Value"
           defaultValue={data.value}
           onChange={changeHandler}
-          required
           style={{ margin: '0 8px' }}
         />
         <Button
