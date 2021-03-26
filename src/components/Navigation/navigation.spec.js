@@ -33,10 +33,10 @@ describe('Navigation component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render 6 menu elements', () => {
+  it('should render 7 menu elements', () => {
     const items = wrapper.find(Menu.Item);
 
-    expect(items.length).toBe(6);
+    expect(items.length).toBe(7);
   });
 
   it('should handle click on button and dispatch logout action', () => {

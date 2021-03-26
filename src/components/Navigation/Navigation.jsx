@@ -31,6 +31,10 @@ const Navigation = () => {
       </Menu.Item>
 
       <Menu.Item>
+        <Link to="/chat">Chat</Link>
+      </Menu.Item>
+
+      <Menu.Item>
         <Link to="/create">Create Event</Link>
       </Menu.Item>
 
