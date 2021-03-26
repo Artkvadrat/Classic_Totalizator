@@ -1,17 +1,13 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'antd';
-import {
-  resetError,
-  sendParticipant
-} from '../../../ducks/createParticipant/createParticipant';
+import { resetError } from '../../../ducks/createParticipant/createParticipant';
 
 import '../../../setupTests';
 
 import CreateParticipant from '../CreateParticipant';
-import AddPlayerForm from '../AddPlayerForm';
 
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
@@ -102,7 +98,8 @@ describe('CreateParticipant component', () => {
 
     wrapper.find(Button).at(1).simulate('click');
 
-    expect(window.location.reload).toHaveBeenCalled();
+    expect(history.push).toHaveBeenCalled();
+    expect(history.push).toHaveBeenCalledWith('/create-participant');
   });
 
   it('should render Result with error', () => {
