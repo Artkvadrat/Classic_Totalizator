@@ -1,0 +1,30 @@
+.form-message {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 270px;
+    margin-bottom: 30px;
+    
+}
+
+.textarea-message {
+    resize: none;
+    background-color: transparent;
+    outline: none;
+    padding: 5px;
+    width: 270px;
+    height: 70px;
+    border: 1px solid #F2EDED;
+
+}
+.create-message {
+    background-color: #1890ff;
+    color: #fff;
+    outline: none;
+    position: absolute;
+    bottom: -26px;
+    z-index: 5;
+    right: 0;
+    border: none;
+    cursor: pointer;
+}

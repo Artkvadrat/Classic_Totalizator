@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Menu } from 'antd';
 
+import './styles.css';
 import { logout } from '../../ducks/loginPage/loginPage';
 
 const Navigation = () => {
@@ -22,11 +23,19 @@ const Navigation = () => {
       </Menu.Item>
 
       <Menu.Item>
-        <Link to="/create">Create Event</Link>
+        <Link to="/users">Users</Link>
       </Menu.Item>
 
       <Menu.Item>
-        <Link to="/users">Users</Link>
+        <Link to="/bets">Bets</Link>
+      </Menu.Item>
+
+      <Menu.Item>
+        <Link to="/chat">Chat</Link>
+      </Menu.Item>
+
+      <Menu.Item>
+        <Link to="/create">Create Event</Link>
       </Menu.Item>
 
       <Menu.Item>

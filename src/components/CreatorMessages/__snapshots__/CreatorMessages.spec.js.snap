@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreatorMessages component should render form 1`] = `
+<form
+  className="form-message"
+  onSubmit={[Function]}
+>
+  <textarea
+    className="textarea-message"
+    onChange={[Function]}
+    value=""
+  />
+  <input
+    className="create-message"
+    type="submit"
+    value="Add message"
+  />
+</form>
+`;
