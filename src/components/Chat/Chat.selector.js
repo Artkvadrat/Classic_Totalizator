@@ -51,7 +51,7 @@ const isLoadingSelector = createSelector(
   ({ isLoading }) => isLoading
 );
 
-const messagesSelector = createSelector(dataSelector, ({ messages }) =>
+const messagesSelector = createSelector(dataSelector, () =>
   tempArray
     .sort((a, b) => Date.parse(a.time) - Date.parse(b.time))
     .map(({ id, time, text, username, avatarLink }) => ({

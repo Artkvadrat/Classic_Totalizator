@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createMessage } from '../../ducks/chat/chat';
+import React, { useState } from 'react';
 import styles from './CreatorMessages.module.css';
 
 const CreatorMessages = () => {
-  const dispatch = useDispatch();
   const [message, setMessage] = useState('');
 
   const handleChange = (event) => {
@@ -15,7 +12,6 @@ const CreatorMessages = () => {
     e.preventDefault();
 
     if (message !== '') {
-      // dispatch(createMessage(message));
       setMessage(() => '');
     }
   };

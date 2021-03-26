@@ -32,7 +32,7 @@ export const getMessages = () => (dispatch) => {
   });
 };
 
-export const createMessage = (data) => (dispatch) =>
+export const createMessage = (data) =>
   HTTPService.request({
     method: 'POST',
     path: '/api/Events',

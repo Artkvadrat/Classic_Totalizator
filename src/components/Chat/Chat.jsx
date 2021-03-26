@@ -1,22 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Skeleton, Table, Row, Col, Space } from 'antd';
 
-import { getMessages } from '../../ducks/chat/chat';
 import selector from './Chat.selector';
 import CreatorMessages from '../CreatorMessages/CreatorMessages';
 import styles from './Chat.module.css';
 
 const Chat = () => {
-  const dispatch = useDispatch();
   const { isLoading, messages } = useSelector(selector);
 
-  // useEffect(() => {
-  //   dispatch(getMessages());
-  // }, [dispatch]);
-  const handleClick = (event) => {
-    console.log(event.target.value);
-  };
+  // const handleClick = (event) => {
+  //   console.log(event.target.value);
+  // };
 
   return isLoading ? (
     <Skeleton active />
@@ -51,7 +46,6 @@ const Chat = () => {
             <button
               className={styles['button-delete']}
               value={key}
-              onClick={handleClick}
               type="button"
             >
               Delete
