@@ -15,14 +15,24 @@ const BetsPage = () => {
     structuredData = betsData
       .sort((a, b) => Date.parse(b.betTime) - Date.parse(a.betTime))
       .map(
-        ({ eventTitle, betChoice, betTime, eventTime, betStatus, userId }) => ({
+        ({
+          eventTitle,
+          betChoice,
+          betTime,
+          eventTime,
+          betStatus,
+          userId,
+          betId,
+          betMoney
+        }) => ({
           eventTitle,
           betChoice,
           betTime: parseDate(betTime),
           eventTime: parseDate(eventTime),
           betStatus,
           userId,
-          key: userId
+          key: betId,
+          betMoney
         })
       );
   }
@@ -33,7 +43,7 @@ const BetsPage = () => {
 
   useInterval(() => {
     dispatch(loadOneMoreBet());
-  }, 2000);
+  }, 5000);
 
   return isLoading ? (
     <Skeleton active />
@@ -41,14 +51,15 @@ const BetsPage = () => {
     <>
       <Row justify="start" style={{ margin: 16 }}>
         <Col span={20}>
-          <h1>Bets</h1>
+          <h1>Bets (live)</h1>
         </Col>
       </Row>
 
       <Table dataSource={structuredData} bordered>
-        <Table.ColumnGroup title="Bet">
+        <Table.ColumnGroup title="Bets">
           <Table.Column title="Time" dataIndex="betTime" key="betTime" />
           <Table.Column title="Stake" dataIndex="betChoice" key="betChoice" />
+          <Table.Column title="Amout" dataIndex="betMoney" key="betMoney" />
           <Table.Column title="Status" dataIndex="betStatus" key="betStatus" />
         </Table.ColumnGroup>
         <Table.ColumnGroup title="Event">

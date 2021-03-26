@@ -32,7 +32,8 @@ export const loadBets = () => (dispatch) => {
       eventTime: '2021-03-21T21:52:06.974+00:00',
       betStatus: 'Bet Lost',
       userId: '996',
-      key: '996'
+      betId: '996',
+      betMoney: 1
     },
     {
       eventTitle: 'Fighter3 - Fighter4',
@@ -41,7 +42,8 @@ export const loadBets = () => (dispatch) => {
       eventTime: '2001-03-19T18:52:28.93+00:00',
       betStatus: '',
       userId: '997',
-      key: '997'
+      betId: '997',
+      betMoney: 200
     },
     {
       eventTitle: 'Lorem - Ipsum',
@@ -50,7 +52,8 @@ export const loadBets = () => (dispatch) => {
       eventTime: '2001-03-24T20:59:40.113+00:00',
       betStatus: 'Win! 12UAH',
       userId: '998',
-      key: '998'
+      betId: '998',
+      betMoney: 2300
     },
     {
       eventTitle: 'Ipsum - Lorem',
@@ -58,7 +61,9 @@ export const loadBets = () => (dispatch) => {
       betTime: '2002-03-24T20:59:51.916+00:00',
       eventTime: '2003-03-21T11:08:19.309+00:00',
       betStatus: '',
-      userId: '999'
+      userId: '999',
+      betId: '999',
+      betMoney: 0.0001
     },
     {
       eventTitle: 'Arsenal - Liverpool',
@@ -66,14 +71,16 @@ export const loadBets = () => (dispatch) => {
       betTime: '1995-02-25T00:00:00+00:00',
       eventTime: '2002-03-21T11:08:00+00:00',
       betStatus: 'Bet lost',
-      userId: '1000'
+      userId: '1000',
+      betId: '1000',
+      betMoney: 50
     }
   ];
 
   dispatch(receivedBets(data));
 };
 
-let id = 1;
+let id = 0;
 export const loadOneMoreBet = () => (dispatch) => {
   id += 1;
   const data = {
@@ -102,7 +109,9 @@ export const loadOneMoreBet = () => (dispatch) => {
     betTime: new Date().toISOString(),
     eventTime: '2021-03-27T21:52:06.974+00:00',
     betStatus: '',
-    userId: id
+    userId: Math.floor(Math.random() * 1000),
+    betId: id,
+    betMoney: Math.floor(Math.random() * 1000)
   };
 
   dispatch(receivedBet(data));
