@@ -27,6 +27,7 @@ exports[`Navigation component should render without errors 1`] = `
   </MenuItem>
   <MenuItem>
     <Link
+
       to="/chat"
     >
       Chat
