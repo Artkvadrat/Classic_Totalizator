@@ -97,14 +97,14 @@ const CreateParticipant = () => {
         return setNewParticipant(participant);
       }
       case 'parameterForTeam': {
-        const participant = { ...newParticipant };
-        participant.parameters.push({ type: '', value: '' });
-        return setNewParticipant(participant);
+        const team = { ...newTeam };
+        team.parameters.push({ type: '', value: '' });
+        return setNewParticipant(team);
       }
       case 'playerInTeam': {
-        const participant = { ...newParticipant };
-        participant.parameters.push({ type: '', value: '' });
-        return setNewParticipant(participant);
+        const team = { ...newTeam };
+        team.players.push({ name: '' });
+        return setNewParticipant(team);
       }
       default: {
         return false;
