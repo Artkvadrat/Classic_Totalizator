@@ -16,6 +16,7 @@ exports[`AddingParameters component should render without error 1`] = `
       name="type"
       onChange={[Function]}
       placeholder="Type"
+      required={true}
       type="text"
     />
     <Input
@@ -23,6 +24,7 @@ exports[`AddingParameters component should render without error 1`] = `
       name="value"
       onChange={[Function]}
       placeholder="Value"
+      required={true}
       style={
         Object {
           "margin": "0 8px",

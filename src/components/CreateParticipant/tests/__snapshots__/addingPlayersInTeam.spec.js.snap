@@ -16,6 +16,7 @@ exports[`AddingPlayersInTeam component should render without error 1`] = `
       name="name"
       onChange={[Function]}
       placeholder="Name"
+      required={true}
       style={
         Object {
           "marginRight": "8px",

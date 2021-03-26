@@ -1,5 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`LoginPage component should render form with error message without error 1`] = `
+<Row
+  align="middle"
+  justify="center"
+  style={
+    Object {
+      "flexDirection": "column",
+      "paddingTop": "200px",
+      "textAlign": "center",
+    }
+  }
+  type="flex"
+>
+  <Alert
+    message="An error occurred, please try again"
+    style={
+      Object {
+        "marginBottom": "15px",
+      }
+    }
+    type="error"
+  />
+  <ForwardRef(InternalForm)
+    layout="vertical"
+    onFinish={[Function]}
+  >
+    <FormItem
+      label="Email"
+      name="email"
+      rules={
+        Array [
+          Object {
+            "message": "Please enter email",
+            "required": true,
+          },
+        ]
+      }
+    >
+      <Input
+        placeholder="Email"
+        type="text"
+      />
+    </FormItem>
+    <FormItem
+      label="Password"
+      name="password"
+      rules={
+        Array [
+          Object {
+            "message": "Please enter password",
+            "required": true,
+          },
+        ]
+      }
+    >
+      <Password
+        action="click"
+        iconRender={[Function]}
+        placeholder="Password"
+        visibilityToggle={true}
+      />
+    </FormItem>
+    <FormItem>
+      <Button
+        htmlType="submit"
+        type="primary"
+      >
+        Submit
+      </Button>
+    </FormItem>
+  </ForwardRef(InternalForm)>
+</Row>
+`;
+
 exports[`LoginPage component should render form without error 1`] = `
 <ForwardRef(InternalForm)
   layout="vertical"
@@ -52,12 +126,33 @@ exports[`LoginPage component should render form without error 1`] = `
 </ForwardRef(InternalForm)>
 `;
 
+exports[`LoginPage component should render spinner without error 1`] = `
+<Row
+  align="middle"
+  justify="center"
+  style={
+    Object {
+      "paddingTop": "200px",
+      "textAlign": "center",
+    }
+  }
+  type="flex"
+>
+  <Spin
+    size="large"
+    spinning={true}
+    wrapperClassName=""
+  />
+</Row>
+`;
+
 exports[`LoginPage component should render without error 1`] = `
 <Row
   align="middle"
   justify="center"
   style={
     Object {
+      "flexDirection": "column",
       "paddingTop": "200px",
       "textAlign": "center",
     }

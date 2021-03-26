@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Form, Input, Button, Row } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form, Input, Button, Row, Spin, Alert } from 'antd';
 
 import {
   loginUser,
@@ -9,6 +9,8 @@ import {
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+
+  const { isLoading, isError } = useSelector((state) => state.loginPage);
 
   useEffect(() => {
     const token = window.localStorage.getItem('jwtToken');
@@ -29,13 +31,37 @@ const LoginPage = () => {
     [dispatch]
   );
 
+  if (isLoading) {
+    return (
+      <Row
+        type="flex"
+        justify="center"
+        align="middle"
+        style={{ textAlign: 'center', paddingTop: '200px' }}
+      >
+        <Spin size="large" />
+      </Row>
+    );
+  }
+
   return (
     <Row
       type="flex"
       justify="center"
       align="middle"
-      style={{ textAlign: 'center', paddingTop: '200px' }}
+      style={{
+        textAlign: 'center',
+        paddingTop: '200px',
+        flexDirection: 'column'
+      }}
     >
+      {isError && (
+        <Alert
+          message="An error occurred, please try again"
+          type="error"
+          style={{ marginBottom: '15px' }}
+        />
+      )}
       <Form layout="vertical" onFinish={submitLoginForm}>
         <Form.Item
           label="Email"

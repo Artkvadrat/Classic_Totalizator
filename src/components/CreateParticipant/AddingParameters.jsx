@@ -27,6 +27,7 @@ const AddingParameters = ({ initialData, id, addData, type }) => {
           placeholder="Type"
           defaultValue={data.type}
           onChange={changeHandler}
+          required
         />
         <Input
           name="value"
@@ -34,6 +35,7 @@ const AddingParameters = ({ initialData, id, addData, type }) => {
           defaultValue={data.value}
           onChange={changeHandler}
           style={{ margin: '0 8px' }}
+          required
         />
         <Button
           type="primary"
