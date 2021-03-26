@@ -11,6 +11,9 @@ import EventPool from './components/EventPool/EventPool';
 import LoginPage from './components/LoginPage/LoginPage';
 import CreatorEvent from './components/CreatorEvent/CreatorEvent';
 import EditorEvent from './components/EditorEvent/EditorEvent';
+import CreateParticipant from './components/CreateParticipant/CreateParticipant';
+import BetsPage from './components/BetsPage/BetsPage';
+import Chat from './components/Chat/Chat';
 
 const App = () => {
   const { isLoggedIn } = useSelector((state) => state.loginPage);
@@ -41,8 +44,20 @@ const App = () => {
             <EditorEvent />
           </Route>
 
+          <Route path="/create-participant">
+            <CreateParticipant />
+          </Route>
+
           <Route path="/users">
             <UsersPage />
+          </Route>
+
+          <Route path="/bets">
+            <BetsPage />
+          </Route>
+
+          <Route path="/chat">
+            <Chat />
           </Route>
 
           <Route path="/">

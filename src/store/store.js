@@ -6,13 +6,19 @@ import loginPageReducer from '../ducks/loginPage/loginPage';
 import usersPageReducer from '../ducks/usersPage/usersPage';
 import creatorEventReducer from '../ducks/creatorEvent/creatorEvent';
 import editorEventReducer from '../ducks/editorEvent/editorEvent';
+import createParticipantReducer from '../ducks/createParticipant/createParticipant';
+import betsReducer from '../ducks/bets/bets';
+import chatReducer from '../ducks/chat/chat';
 
 const rootReducer = combineReducers({
   events: eventsReducer,
   loginPage: loginPageReducer,
   usersPage: usersPageReducer,
   editorEvent: editorEventReducer,
-  creatorEvent: creatorEventReducer
+  creatorEvent: creatorEventReducer,
+  createParticipant: createParticipantReducer,
+  bets: betsReducer,
+  chat: chatReducer
 });
 
 const composeEnhancers =

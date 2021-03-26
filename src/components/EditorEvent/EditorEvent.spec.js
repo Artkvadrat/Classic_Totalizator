@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { shallow, mount } from 'enzyme';
+
 import { useHistory, useParams } from 'react-router-dom';
 import {
   loadData,
@@ -33,7 +34,8 @@ describe('EditorEvent component', () => {
   const history = {
     push: jest.fn()
   };
-  const dispatch = jest.fn();
+
+  const dispatch = jest.fn(() => Promise.resolve());
 
   beforeEach(() => {
     useDispatch.mockReturnValue(dispatch);
@@ -46,7 +48,7 @@ describe('EditorEvent component', () => {
       event: {
         id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
         margin: 5,
-        startTime: '2021-05-24T04:55:03'
+        startTime: '2022-05-24T04:55'
       },
       isLoading: false
     });
@@ -59,19 +61,21 @@ describe('EditorEvent component', () => {
     expect(dispatch).not.toHaveBeenCalled();
     expect(loadData).not.toHaveBeenCalled();
 
-    const result = mount(<EditorEvent />);
+    mount(<EditorEvent />);
 
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(Symbol.for('load'));
     expect(loadData).toHaveBeenCalledTimes(1);
     expect(loadData).toHaveBeenCalledWith(params.id);
   });
+
   it('should render form', () => {
     const result = shallow(<EditorEvent />);
     const form = result.find('.form-editor');
     expect(form.exists()).toEqual(true);
     expect(result).toMatchSnapshot();
   });
+
   it('should render Skeleton without', () => {
     useSelector.mockReturnValue({
       event: {
@@ -84,8 +88,10 @@ describe('EditorEvent component', () => {
     const result = shallow(<EditorEvent />);
     expect(result).toMatchSnapshot();
   });
+
   it('should save event on submit form', () => {
     const result = shallow(<EditorEvent />);
+
     const fakeEvent = {
       preventDefault: jest.fn()
     };
@@ -99,6 +105,7 @@ describe('EditorEvent component', () => {
     expect(saveEvent).toHaveBeenCalledTimes(1);
     expect(history.push).toHaveBeenCalledTimes(1);
   });
+
   it("shouldn't save event on submit form", () => {
     useSelector.mockReturnValue({
       event: {
@@ -121,6 +128,7 @@ describe('EditorEvent component', () => {
     expect(saveEvent).not.toHaveBeenCalled();
     expect(history.push).not.toHaveBeenCalled();
   });
+
   it('should dispatch changeFieldEvent action on change field form', () => {
     const result = shallow(<EditorEvent />);
     const fakeEventMargin = {

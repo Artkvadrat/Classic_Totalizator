@@ -1,5 +1,13 @@
 const parseDate = (dateString) => {
+  if (
+    !dateString ||
+    typeof dateString !== 'string' ||
+    Number.isNaN(Date.parse(dateString))
+  )
+    return '';
+
   const dateObj = new Date(dateString);
+
   const addLeadingZeros = (number) => number.toString().padStart(2, '0');
 
   let month = dateObj.getMonth() + 1;
