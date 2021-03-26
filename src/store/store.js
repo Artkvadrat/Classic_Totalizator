@@ -7,6 +7,7 @@ import usersPageReducer from '../ducks/usersPage/usersPage';
 import creatorEventReducer from '../ducks/creatorEvent/creatorEvent';
 import editorEventReducer from '../ducks/editorEvent/editorEvent';
 import createParticipantReducer from '../ducks/createParticipant/createParticipant';
+import betsReducer from '../ducks/bets/bets';
 
 const rootReducer = combineReducers({
   events: eventsReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   usersPage: usersPageReducer,
   editorEvent: editorEventReducer,
   creatorEvent: creatorEventReducer,
-  createParticipant: createParticipantReducer
+  createParticipant: createParticipantReducer,
+  bets: betsReducer
 });
 
 const composeEnhancers =
