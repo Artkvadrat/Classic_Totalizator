@@ -1,4 +1,4 @@
-import HTTPService from '../../services/HTTPService/HTTPService';
+// import HTTPService from '../../services/HTTPService/HTTPService';
 
 export const REQUESTED_BETS = 'bets/requested';
 export const RECEIVED_BETS = 'bets/received';
