@@ -112,7 +112,6 @@ describe('CreatorEvent component', () => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(Symbol.for('create'));
     expect(createEvent).toHaveBeenCalledTimes(1);
-    expect(history.push).toHaveBeenCalledTimes(1);
   });
 
   it("shouldn't create event on submit form", () => {

@@ -103,7 +103,6 @@ describe('EditorEvent component', () => {
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(Symbol.for('save'));
     expect(saveEvent).toHaveBeenCalledTimes(1);
-    expect(history.push).toHaveBeenCalledTimes(1);
   });
 
   it("shouldn't save event on submit form", () => {

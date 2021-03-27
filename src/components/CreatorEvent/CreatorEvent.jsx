@@ -59,7 +59,7 @@ const CreatorEvent = () => {
     if (isFullForm) {
       dispatch(
         createEvent({ ...event, startTime: moment(startTime).format() })
-      ).then(history.push('/'));
+      ).then(() => history.push('/'));
     }
   };
 
