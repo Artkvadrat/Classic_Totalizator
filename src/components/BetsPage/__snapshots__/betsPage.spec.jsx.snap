@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<Fragment>
+  <Row
+    justify="start"
+    style={
+      Object {
+        "margin": 16,
+      }
+    }
+  >
+    <Col
+      span={20}
+    >
+      <h1>
+        Bets (live)
+      </h1>
+    </Col>
+  </Row>
+  <Table
+    bordered={true}
+    dataSource={
+      Array [
+        Object {
+          "betChoice": "X",
+          "betMoney": 450,
+          "betStatus": "Active",
+          "betTime": "12:21 27.03.2021",
+          "eventTime": "21:10 03.04.2021",
+          "eventTitle": "Conor McGregor - France",
+          "key": "ff8c2f0e-12e5-4f82-9e22-0f0362aa16ae",
+          "userId": "3efa62a5-dfb4-4c87-bb0b-d76ef04d6026",
+        },
+        Object {
+          "betChoice": "W1",
+          "betMoney": 450,
+          "betStatus": "Active",
+          "betTime": "12:21 27.03.2021",
+          "eventTime": "21:10 03.04.2021",
+          "eventTitle": "Conor McGregor - France",
+          "key": "e67bc945-c328-463b-a5d5-9128c85c186d",
+          "userId": "3efa62a5-dfb4-4c87-bb0b-d76ef04d6026",
+        },
+      ]
+    }
+    rowKey="key"
+  >
+    <ColumnGroup
+      title="Bets"
+    >
+      <Column
+        dataIndex="betTime"
+        key="betTime"
+        title="Time"
+      />
+      <Column
+        dataIndex="betChoice"
+        key="betChoice"
+        title="Stake"
+      />
+      <Column
+        dataIndex="betMoney"
+        key="betMoney"
+        title="Amount"
+      />
+      <Column
+        dataIndex="betStatus"
+        key="betStatus"
+        title="Status"
+      />
+    </ColumnGroup>
+    <ColumnGroup
+      title="Event"
+    >
+      <Column
+        dataIndex="eventTitle"
+        key="eventTitle"
+        title="Match"
+      />
+      <Column
+        dataIndex="eventTime"
+        key="eventTime"
+        title="Time"
+      />
+    </ColumnGroup>
+    <Column
+      dataIndex="userId"
+      key="userId"
+      title="User"
+    />
+  </Table>
+</Fragment>
+`;
+
+exports[`BetsPage component should render skeleton if loading in progress 1`] = `
+<Skeleton
+  active={true}
+  avatar={false}
+  paragraph={true}
+  title={true}
+/>
+`;

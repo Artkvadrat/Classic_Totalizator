@@ -42,6 +42,7 @@ const EventPool = () => {
         <Table.Column
           title="Event Status"
           key="status"
+          defaultFilteredValue={['Not Resolved']}
           filters={[{ text: 'Not Resolved', value: 'Not Resolved' }]}
           onFilter={(_, record) => !record.isEnded}
           render={({ isEnded, possibleResults, key }) =>

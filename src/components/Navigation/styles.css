@@ -16,3 +16,7 @@
 .ant-menu-horizontal > .ant-menu-item:hover a {
   color: #1890ff !important;
 }
+
+.ant-dropdown-menu-item {
+  display: flex;
+}

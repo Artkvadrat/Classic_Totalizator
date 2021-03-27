@@ -136,6 +136,11 @@ exports[` 1`] = `
       title="Margin"
     />
     <Column
+      defaultFilteredValue={
+        Array [
+          "Not Resolved",
+        ]
+      }
       filters={
         Array [
           Object {
@@ -222,6 +227,11 @@ exports[`EventPool component should render results with no data 1`] = `
       title="Margin"
     />
     <Column
+      defaultFilteredValue={
+        Array [
+          "Not Resolved",
+        ]
+      }
       filters={
         Array [
           Object {

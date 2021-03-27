@@ -17,7 +17,7 @@ const receivedBets = (data) => ({
 export const loadBets = () => (dispatch) => {
   dispatch(requestedBets());
 
-  HTTPService.request({
+  return HTTPService.request({
     path: '/api/Bet/history/admin'
   }).then((data) => {
     const structured = data.betsPreviewForAdmins
