@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreatorMessages component should render creator messages and Skeleton 1`] = `
+<Fragment>
+  <Row
+    align="middle"
+    justify="space-between"
+  >
+    <Col>
+      <h1>
+        All messages
+      </h1>
+    </Col>
+    <Col
+      style={
+        Object {
+          "margin": 16,
+        }
+      }
+    >
+      <CreatorMessages />
+    </Col>
+  </Row>
+  <Skeleton
+    active={true}
+    avatar={false}
+    paragraph={true}
+    title={true}
+  />
+</Fragment>
+`;
+
+exports[`CreatorMessages component should render creator messages and messages 1`] = `
+<Fragment>
+  <Row
+    align="middle"
+    justify="space-between"
+  >
+    <Col>
+      <h1>
+        All messages
+      </h1>
+    </Col>
+    <Col
+      style={
+        Object {
+          "margin": 16,
+        }
+      }
+    >
+      <CreatorMessages />
+    </Col>
+  </Row>
+  <Table
+    dataSource={
+      Array [
+        Object {
+          "avatarImg": "https://avatars.dicebear.com/api/bottts/.png",
+          "date": "18:20 05.04.2021",
+          "key": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "message": "string",
+          "userName": "Vova",
+        },
+      ]
+    }
+    rowKey="key"
+  >
+    <Column
+      key="user"
+      render={[Function]}
+      title="User"
+    />
+    <Column
+      dataIndex="message"
+      key="message"
+      title="Message"
+    />
+    <Column
+      dataIndex="date"
+      key="date"
+      title="Time"
+    />
+    <Column
+      key="action"
+      render={[Function]}
+      title="Action"
+    />
+  </Table>
+</Fragment>
+`;

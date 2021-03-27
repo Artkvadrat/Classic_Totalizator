@@ -1,4 +1,6 @@
+/* eslint no-unneeded-ternary: ["error", { "defaultAssignment": true }] */
 import HTTPService from '../../services/HTTPService/HTTPService';
+import parseDate from '../../services/dateParse/dateParse';
 
 export const REQUESTED = 'chat/requested';
 export const RECEIVED = 'chat/received';
@@ -12,6 +14,10 @@ const requested = () => ({
 const received = (data) => ({
   type: RECEIVED,
   payload: data
+});
+
+const created = () => ({
+  type: CREATED
 });
 
 const deleted = () => ({
@@ -28,16 +34,27 @@ export const getMessages = () => (dispatch) => {
   dispatch(requested());
 
   return HTTPService.request({ path: '/api/Chat' }).then((data) => {
-    dispatch(received(data));
+    const array = data.messages
+      .sort((a, b) => Date.parse(a.time) - Date.parse(b.time))
+      .map(({ id, time, text, username, avatarLink }) => ({
+        key: id,
+        date: parseDate(time),
+        message: text,
+        userName: username,
+        avatarImg: avatarLink
+          ? avatarLink
+          : 'https://avatars.dicebear.com/api/bottts/.png'
+      }));
+    dispatch(received(array));
   });
 };
 
-export const createMessage = (data) =>
+export const createMessage = (data) => (dispatch) =>
   HTTPService.request({
     method: 'POST',
-    path: '/api/Events',
+    path: '/api/Chat',
     body: { text: data }
-  });
+  }).then(dispatch(created()));
 
 const initialState = {
   isLoading: false,
@@ -56,21 +73,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        messages: [...action.payload.messages]
+        messages: [...action.payload]
       };
 
-    // case FINISH:
-    //   return {
-    //     ...state,
-    //     eventsData: state.eventsData.map((event) => {
-    //       if (event.id === action.payload.id) {
-    //         return { ...event, isEnded: true };
-    //       }
-
-    //       return event;
-    //     })
-    //   };
-
+    case CREATED:
+      return {
+        ...initialState
+      };
+    case DELETED:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

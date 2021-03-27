@@ -1,9 +1,9 @@
 import moment from 'moment';
 import HTTPService from '../../services/HTTPService/HTTPService';
 
-export const LOADED_EVENT = 'admin_panel/editor_event/loaded_event';
-export const CHANGED_EVENT = 'admin_panel/editor_event/changed_field';
-export const CLEAR_EVENT = 'admin_panel/editor_event/clear_field';
+export const LOADED_EVENT = 'editor_event/loaded_event';
+export const CHANGED_EVENT = 'editor_event/changed_field';
+export const CLEAR_EVENT = 'editor_event/clear_field';
 
 export const loadedEvent = (event) => ({
   type: LOADED_EVENT,
