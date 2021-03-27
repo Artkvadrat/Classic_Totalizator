@@ -29,25 +29,26 @@ describe('loginPage reducer', () => {
     it('should return the initial state', () => {
       expect(reducer(undefined, {})).toEqual({
         isLoading: false,
-        isLoggedIn: false
+        isLoggedIn: false,
+        isError: false
       });
     });
 
     it('should handle REQUESTED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: false, isLoggedIn: false },
+          { isLoading: false, isLoggedIn: false, isError: false },
           {
             type: REQUESTED_JWT_TOKEN
           }
         )
-      ).toEqual({ isLoading: true, isLoggedIn: false });
+      ).toEqual({ isLoading: true, isLoggedIn: false, isError: false });
     });
 
     it('should handle RECEIVED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: true, isLoggedIn: false },
+          { isLoading: true, isLoggedIn: false, isError: false },
           {
             type: RECEIVED_JWT_TOKEN,
             payload: 'testJwtToken'
@@ -55,14 +56,15 @@ describe('loginPage reducer', () => {
         )
       ).toEqual({
         isLoading: false,
-        isLoggedIn: true
+        isLoggedIn: true,
+        isError: false
       });
     });
 
     it('should handle TESTED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: true, isLoggedIn: false },
+          { isLoading: true, isLoggedIn: false, isError: false },
           {
             type: TESTED_JWT_TOKEN,
             payload: 'testJwtToken'
@@ -70,21 +72,23 @@ describe('loginPage reducer', () => {
         )
       ).toEqual({
         isLoading: false,
-        isLoggedIn: true
+        isLoggedIn: true,
+        isError: false
       });
     });
 
     it('should handle DENIED_JWT_TOKEN', () => {
       expect(
         reducer(
-          { isLoading: true, isLoggedIn: false },
+          { isLoading: true, isLoggedIn: false, isError: false },
           {
             type: DENIED_JWT_TOKEN
           }
         )
       ).toEqual({
         isLoading: false,
-        isLoggedIn: false
+        isLoggedIn: false,
+        isError: true
       });
     });
 

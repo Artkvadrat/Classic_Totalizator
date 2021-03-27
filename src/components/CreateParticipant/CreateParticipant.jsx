@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Result, Button } from 'antd';
+import { Result, Button, Row } from 'antd';
 
 import {
   sendParticipant,
@@ -132,7 +132,7 @@ const CreateParticipant = () => {
   };
 
   const reloadPage = () => {
-    window.location.reload();
+    history.push('/create-participant');
   };
 
   const clearError = () => {
@@ -141,57 +141,96 @@ const CreateParticipant = () => {
 
   if (isSent) {
     return (
-      <Result
-        title="New participant added"
-        extra={
-          <div>
-            <Button type="primary" onClick={goToMain}>
-              Go to main
-            </Button>
-            <Button type="default" onClick={reloadPage}>
-              Add new participant
-            </Button>
-          </div>
-        }
-      />
+      <Result title="New participant added">
+        <div style={{ textAlign: 'center' }}>
+          <Button type="primary" onClick={goToMain} style={{ margin: '5px' }}>
+            Go to main
+          </Button>
+          <Button type="default" onClick={reloadPage} style={{ margin: '5px' }}>
+            Add new participant
+          </Button>
+        </div>
+      </Result>
     );
   }
 
   if (error) {
     return (
-      <Result
-        title="An error occurred"
-        subTitle="Please, try again"
-        extra={
-          <div>
-            <Button type="primary" onClick={goToMain}>
-              Go to main
-            </Button>
-            <Button type="default" onClick={clearError}>
-              Retry
-            </Button>
-          </div>
-        }
-      />
+      <Result title="An error occurred" subTitle="Please, try again">
+        <div style={{ textAlign: 'center' }}>
+          <Button type="primary" onClick={goToMain} style={{ margin: '5px' }}>
+            Go to main
+          </Button>
+          <Button type="default" onClick={clearError} style={{ margin: '5px' }}>
+            Retry
+          </Button>
+        </div>
+      </Result>
     );
   }
 
   return onePlayerForm.playerForm ? (
-    <AddPlayerForm
-      changeShowingForm={changeShowingForm}
-      newParticipant={newParticipant}
-      addNewParameters={addNewParameters}
-      addData={addData}
-      submitHandler={submitFormHandler}
-    />
+    <Row
+      type="flex"
+      justify="center"
+      align="middle"
+      style={{
+        textAlign: 'center',
+        paddingTop: '200px',
+        flexDirection: 'column'
+      }}
+    >
+      <h2>Adding player</h2>
+      <div>
+        <Button disabled style={{ margin: '15px' }}>
+          Add player
+        </Button>
+        <Button
+          type="primary"
+          style={{ margin: '15px' }}
+          onClick={changeShowingForm}
+        >
+          Add team
+        </Button>
+      </div>
+      <AddPlayerForm
+        newParticipant={newParticipant}
+        addNewParameters={addNewParameters}
+        addData={addData}
+        submitHandler={submitFormHandler}
+      />
+    </Row>
   ) : (
-    <AddTeamForm
-      changeShowingForm={changeShowingForm}
-      newTeam={newTeam}
-      addNewParameters={addNewParameters}
-      addData={addData}
-      submitHandler={submitFormHandler}
-    />
+    <Row
+      type="flex"
+      justify="center"
+      align="middle"
+      style={{
+        textAlign: 'center',
+        paddingTop: '200px',
+        flexDirection: 'column'
+      }}
+    >
+      <h2>Adding team</h2>
+      <div>
+        <Button
+          type="primary"
+          style={{ margin: '15px' }}
+          onClick={changeShowingForm}
+        >
+          Add player
+        </Button>
+        <Button disabled style={{ margin: '15px' }}>
+          Add team
+        </Button>
+      </div>
+      <AddTeamForm
+        newTeam={newTeam}
+        addNewParameters={addNewParameters}
+        addData={addData}
+        submitHandler={submitFormHandler}
+      />
+    </Row>
   );
 };
 

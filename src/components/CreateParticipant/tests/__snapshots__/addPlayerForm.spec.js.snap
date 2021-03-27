@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddPlayerForm component should render 2 parameters forms without error 1`] = `
+<ForwardRef(InternalForm)
+  layout="vertical"
+  onFinish={[Function]}
+>
+  <FormItem
+    label="Name"
+    name="name"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter name",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <FormItem
+    label="Link to photo"
+    name="photoLink"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter link to photo",
+          "required": true,
+        },
+        Object {
+          "message": "Enter .png photo please",
+          "pattern": /\\.png\\$/,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <div
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <p>
+      Parameters
+    </p>
+    <AddingParameters
+      addData={[MockFunction]}
+      id={0}
+      initialData={
+        Object {
+          "type": "",
+          "value": "",
+        }
+      }
+      key="0"
+      type="playerParameters"
+    />
+    <AddingParameters
+      addData={[MockFunction]}
+      id={1}
+      initialData={
+        Object {
+          "type": "",
+          "value": "",
+        }
+      }
+      key="1"
+      type="playerParameters"
+    />
+  </div>
+  <FormItem>
+    <Button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Add new parameter
+    </Button>
+  </FormItem>
+  <FormItem>
+    <Button
+      htmlType="submit"
+      type="primary"
+    >
+      Submit
+    </Button>
+  </FormItem>
+</ForwardRef(InternalForm)>
+`;
+
+exports[`AddPlayerForm component should render without error 1`] = `
+<ForwardRef(InternalForm)
+  layout="vertical"
+  onFinish={[Function]}
+>
+  <FormItem
+    label="Name"
+    name="name"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter name",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <FormItem
+    label="Link to photo"
+    name="photoLink"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter link to photo",
+          "required": true,
+        },
+        Object {
+          "message": "Enter .png photo please",
+          "pattern": /\\.png\\$/,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <div
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <p>
+      Parameters
+    </p>
+    <AddingParameters
+      addData={[MockFunction]}
+      id={0}
+      initialData={
+        Object {
+          "type": "",
+          "value": "",
+        }
+      }
+      key="0"
+      type="playerParameters"
+    />
+  </div>
+  <FormItem>
+    <Button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Add new parameter
+    </Button>
+  </FormItem>
+  <FormItem>
+    <Button
+      htmlType="submit"
+      type="primary"
+    >
+      Submit
+    </Button>
+  </FormItem>
+</ForwardRef(InternalForm)>
+`;
