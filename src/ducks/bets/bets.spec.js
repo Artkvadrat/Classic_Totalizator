@@ -1,6 +1,5 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import parseDate from '../../services/dateParse/dateParse';
 
 import reducer, { loadBets, REQUESTED_BETS, RECEIVED_BETS } from './bets';
 
