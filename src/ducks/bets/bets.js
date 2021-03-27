@@ -1,8 +1,9 @@
-// import HTTPService from '../../services/HTTPService/HTTPService';
+/* eslint-disable camelcase */
+import HTTPService from '../../services/HTTPService/HTTPService';
+import parseDate from '../../services/dateParse/dateParse';
 
 export const REQUESTED_BETS = 'bets/requested';
 export const RECEIVED_BETS = 'bets/received';
-export const RECEIVED_BET = 'bet/received';
 
 const requestedBets = () => ({
   type: REQUESTED_BETS
@@ -13,108 +14,38 @@ const receivedBets = (data) => ({
   payload: data
 });
 
-const receivedBet = (data) => ({
-  type: RECEIVED_BET,
-  payload: data
-});
-
 export const loadBets = () => (dispatch) => {
   dispatch(requestedBets());
 
-  //   return HTTPService.request({
-  //     path: '/' // PATH????
-  //   }).then((data) => dispatch(receivedBets(data)));
-  const data = [
-    {
-      eventTitle: 'Fighter1 - Fighter2',
-      betChoice: 'W1',
-      betTime: '1983-07-16T01:55:02.902+00:00',
-      eventTime: '2021-03-21T21:52:06.974+00:00',
-      betStatus: 'Bet Lost',
-      userId: '996',
-      betId: '996',
-      betMoney: 1
-    },
-    {
-      eventTitle: 'Fighter3 - Fighter4',
-      betChoice: 'X',
-      betTime: '2002-02-24T00:00:00+00:00',
-      eventTime: '2001-03-19T18:52:28.93+00:00',
-      betStatus: '',
-      userId: '997',
-      betId: '997',
-      betMoney: 200
-    },
-    {
-      eventTitle: 'Lorem - Ipsum',
-      betChoice: 'W2',
-      betTime: '2002-10-14T09:52:32.124+00:00',
-      eventTime: '2001-03-24T20:59:40.113+00:00',
-      betStatus: 'Win! 12UAH',
-      userId: '998',
-      betId: '998',
-      betMoney: 2300
-    },
-    {
-      eventTitle: 'Ipsum - Lorem',
-      betChoice: 'W1',
-      betTime: '2002-03-24T20:59:51.916+00:00',
-      eventTime: '2003-03-21T11:08:19.309+00:00',
-      betStatus: '',
-      userId: '999',
-      betId: '999',
-      betMoney: 0.0001
-    },
-    {
-      eventTitle: 'Arsenal - Liverpool',
-      betChoice: 'W2',
-      betTime: '1995-02-25T00:00:00+00:00',
-      eventTime: '2002-03-21T11:08:00+00:00',
-      betStatus: 'Bet lost',
-      userId: '1000',
-      betId: '1000',
-      betMoney: 50
-    }
-  ];
+  HTTPService.request({
+    path: '/api/Bet/history/admin'
+  }).then((data) => {
+    const structured = data.betsPreviewForAdmins
+      .sort((a, b) => Date.parse(b.betTime) - Date.parse(a.betTime))
+      .map(
+        ({
+          bet_Id,
+          account_Id,
+          teamConfrontation,
+          choice,
+          eventStartime,
+          betTime,
+          amount,
+          status
+        }) => ({
+          eventTitle: teamConfrontation,
+          betChoice: choice,
+          betTime: parseDate(betTime),
+          eventTime: parseDate(eventStartime),
+          betStatus: status || 'Not resolved',
+          userId: account_Id,
+          key: bet_Id,
+          betMoney: amount
+        })
+      );
 
-  dispatch(receivedBets(data));
-};
-
-let id = 0;
-export const loadOneMoreBet = () => (dispatch) => {
-  id += 1;
-  const data = {
-    eventTitle: `${
-      [
-        'Player1',
-        'Player2',
-        'Player3',
-        'Player4',
-        'Player5',
-        'Player6',
-        'Player7'
-      ][Math.floor(Math.random() * 7)]
-    } - ${
-      [
-        'Player1',
-        'Player2',
-        'Player3',
-        'Player4',
-        'Player5',
-        'Player6',
-        'Player7'
-      ][Math.floor(Math.random() * 7)]
-    }`,
-    betChoice: ['W1', 'X', 'W2'][Math.floor(Math.random() * 3)],
-    betTime: new Date().toISOString(),
-    eventTime: '2021-03-27T21:52:06.974+00:00',
-    betStatus: '',
-    userId: Math.floor(Math.random() * 1000),
-    betId: id,
-    betMoney: Math.floor(Math.random() * 1000)
-  };
-
-  dispatch(receivedBet(data));
+    dispatch(receivedBets(structured));
+  });
 };
 
 const initialState = {
@@ -129,17 +60,14 @@ const betsReducer = (state = initialState, action) => {
         ...state,
         isLoading: true
       };
+
     case RECEIVED_BETS:
       return {
         ...state,
         isLoading: false,
         betsData: action.payload
       };
-    case RECEIVED_BET:
-      return {
-        ...state,
-        betsData: [...state.betsData, action.payload]
-      };
+
     default:
       return state;
   }

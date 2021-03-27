@@ -31,31 +31,31 @@ const mockedData = {
       sportName: 'Joany_Green',
       margin: 2,
       possibleResults: ['W1', 'X', 'W2'],
-      isEnded: false,
+      isEnded: true,
       amountW1: 0,
       amountW2: 0,
       amountX: 0
     },
     {
-      id: '40dca2cb-af06-4711-b03b-830387a7a6e9',
+      id: '593aa557-5af8-472d-ac3d-fe674ce7da66',
       participant1: {
-        id: '2055a9c9-2860-444f-be65-452fc8f74697',
-        name: 'Beier Group',
+        id: 'd2428b78-1da6-49bc-aa4d-e559013079a6',
+        name: 'Hammes - Bode',
         players: [],
         photoLink: 'http://placeimg.com/640/480/people',
         parameters: []
       },
       participant2: {
-        id: 'd0d27025-cbd8-46ac-9aba-737e115364f9',
-        name: 'Klocko - Champlin',
+        id: '838450ed-01aa-46b5-9b95-3f335d6edc9e',
+        name: 'Gwen Greenholt',
         players: [],
         photoLink: 'http://placeimg.com/640/480/people',
         parameters: []
       },
-      startTime: '2021-03-23T10:36:10.271+00:00',
-      sportName: 'UFC',
-      margin: 5.1,
-      possibleResults: ['W1', 'W2'],
+      startTime: '2021-03-22T18:13:00+00:00',
+      sportName: 'Joany_Green',
+      margin: 2,
+      possibleResults: ['W1', 'X', 'W2'],
       isEnded: false,
       amountW1: 0,
       amountW2: 0,
@@ -63,6 +63,30 @@ const mockedData = {
     }
   ]
 };
+const structuredData = [
+  {
+    date: '20:13 22.03.2021',
+    id: '593aa557-5af8-472d-ac3d-fe674ce7da67',
+    isEnded: true,
+    key: '593aa557-5af8-472d-ac3d-fe674ce7da67',
+    margin: '2%',
+    player1: 'Hammes - Bode',
+    player2: 'Gwen Greenholt',
+    possibleResults: ['W1', 'X', 'W2'],
+    sport: 'Joany_Green'
+  },
+  {
+    date: '20:13 22.03.2021',
+    id: '593aa557-5af8-472d-ac3d-fe674ce7da66',
+    isEnded: false,
+    key: '593aa557-5af8-472d-ac3d-fe674ce7da66',
+    margin: '2%',
+    player1: 'Hammes - Bode',
+    player2: 'Gwen Greenholt',
+    possibleResults: ['W1', 'X', 'W2'],
+    sport: 'Joany_Green'
+  }
+];
 
 jest.mock('../../services/HTTPService/HTTPService', () => ({
   request: () =>
@@ -108,7 +132,7 @@ describe('Testing events duck', () => {
         )
       ).toEqual({
         isLoading: false,
-        eventsData: mockedData.events
+        eventsData: mockedData
       });
     });
 
@@ -130,7 +154,10 @@ describe('Testing events duck', () => {
     it('should get events list and dispatch REQUESTED and RECEIVED', () => {
       const expectedActions = [
         { type: REQUESTED },
-        { type: RECEIVED, payload: mockedData }
+        {
+          type: RECEIVED,
+          payload: structuredData
+        }
       ];
 
       const store = mockStore({ isLoading: false, eventsData: [] });

@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 
 import { getEvents } from '../../ducks/events/events';
 import EventFinish from '../EventFinish/EventFinish';
-import eventPoolSelector from './EventPool.selector';
 
 const EventPool = () => {
   const dispatch = useDispatch();
-  const { isLoading, eventsData } = useSelector(eventPoolSelector);
+  const { isLoading, eventsData } = useSelector((state) => state.events);
 
   useEffect(() => {
     dispatch(getEvents());
