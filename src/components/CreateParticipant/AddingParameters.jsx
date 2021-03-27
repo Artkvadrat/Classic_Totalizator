@@ -34,8 +34,8 @@ const AddingParameters = ({ initialData, id, addData, type }) => {
           placeholder="Value"
           defaultValue={data.value}
           onChange={changeHandler}
-          required
           style={{ margin: '0 8px' }}
+          required
         />
         <Button
           type="primary"

@@ -1,4 +1,5 @@
 import HTTPService from '../../services/HTTPService/HTTPService';
+import parseDate from '../../services/dateParse/dateParse';
 
 export const REQUESTED = 'events/requested';
 export const RECEIVED = 'events/received';
@@ -29,7 +30,32 @@ export const getEvents = () => (dispatch) => {
   dispatch(requested());
 
   return HTTPService.request({ path: '/api/Events' }).then((data) => {
-    dispatch(received(data));
+    const structured = data.events
+      .sort((a, b) => Date.parse(a.startTime) - Date.parse(b.startTime))
+      .map(
+        ({
+          id,
+          startTime,
+          participant1,
+          participant2,
+          sportName,
+          margin,
+          possibleResults,
+          isEnded
+        }) => ({
+          id,
+          date: parseDate(startTime),
+          player1: participant1.name,
+          player2: participant2.name,
+          sport: sportName,
+          margin: `${margin}%`,
+          possibleResults,
+          isEnded,
+          key: id
+        })
+      );
+
+    dispatch(received(structured));
   });
 };
 
@@ -50,7 +76,7 @@ const eventsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        eventsData: [...action.payload.events]
+        eventsData: action.payload
       };
 
     case FINISH:

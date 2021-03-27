@@ -10,11 +10,12 @@ import {
   createEvent,
   changeFieldEvent
 } from '../../ducks/creatorEvent/creatorEvent';
-import selector from './selector/CreatorEvent.selector';
 import styles from './CreatorEvent.module.css';
 
 const CreatorEvent = () => {
-  const { participants, sports, addEvent, isLoading } = useSelector(selector);
+  const { participants, sports, addEvent, isLoading } = useSelector(
+    (state) => state.creatorEvent
+  );
   const { participant_Id1, participant_Id2, startTime, margin } = addEvent;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -59,7 +60,7 @@ const CreatorEvent = () => {
     if (isFullForm) {
       dispatch(
         createEvent({ ...event, startTime: moment(startTime).format() })
-      ).then(history.push('/'));
+      ).then(() => history.push('/'));
     }
   };
 

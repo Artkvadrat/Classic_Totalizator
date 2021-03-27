@@ -65,7 +65,8 @@ export const logout = () => (dispatch) => {
 
 const initialState = {
   isLoading: false,
-  isLoggedIn: false
+  isLoggedIn: false,
+  isError: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -73,7 +74,8 @@ const reducer = (state = initialState, action) => {
     case REQUESTED_JWT_TOKEN:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        isError: false
       };
     case RECEIVED_JWT_TOKEN:
       window.localStorage.setItem('jwtToken', action.payload);
@@ -93,7 +95,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        isLoggedIn: false
+        isLoggedIn: false,
+        isError: true
       };
     case LOGOUT:
       window.localStorage.clear();
