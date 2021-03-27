@@ -27,7 +27,7 @@ const mockedData = {
         photoLink: 'http://placeimg.com/640/480/people',
         parameters: []
       },
-      startTime: '2021-03-22T18:13:00+00:00',
+      startTime: '',
       sportName: 'Joany_Green',
       margin: 2,
       possibleResults: ['W1', 'X', 'W2'],
@@ -52,7 +52,7 @@ const mockedData = {
         photoLink: 'http://placeimg.com/640/480/people',
         parameters: []
       },
-      startTime: '2021-03-22T18:13:00+00:00',
+      startTime: '',
       sportName: 'Joany_Green',
       margin: 2,
       possibleResults: ['W1', 'X', 'W2'],
@@ -65,7 +65,7 @@ const mockedData = {
 };
 const structuredData = [
   {
-    date: '20:13 22.03.2021',
+    date: '',
     id: '593aa557-5af8-472d-ac3d-fe674ce7da67',
     isEnded: true,
     key: '593aa557-5af8-472d-ac3d-fe674ce7da67',
@@ -76,7 +76,7 @@ const structuredData = [
     sport: 'Joany_Green'
   },
   {
-    date: '20:13 22.03.2021',
+    date: '',
     id: '593aa557-5af8-472d-ac3d-fe674ce7da66',
     isEnded: false,
     key: '593aa557-5af8-472d-ac3d-fe674ce7da66',
