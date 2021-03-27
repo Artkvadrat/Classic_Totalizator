@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createMessage, getMessages } from '../../ducks/chat/chat';
 import styles from './CreatorMessages.module.css';
 
 const CreatorMessages = () => {
   const [message, setMessage] = useState('');
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.chat);
 
   const handleChange = (event) => {
     setMessage(() => event.target.value);
@@ -11,7 +15,8 @@ const CreatorMessages = () => {
   const submit = (e) => {
     e.preventDefault();
 
-    if (message !== '') {
+    if (message !== '' && !isLoading) {
+      dispatch(createMessage(message)).then(() => dispatch(getMessages()));
       setMessage(() => '');
     }
   };

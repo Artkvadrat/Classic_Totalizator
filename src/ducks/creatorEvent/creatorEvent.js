@@ -1,8 +1,8 @@
 import HTTPService from '../../services/HTTPService/HTTPService';
 
-export const LOADED_DATA = 'admin_panel/creator_event/loaded_data';
-export const CHANGED_FIELD = 'admin_panel/creator_event/changed_field';
-export const CLEAR_DATA = 'admin_panel/creator_event/clear_data';
+export const LOADED_DATA = 'creator_event/loaded_data';
+export const CHANGED_FIELD = 'creator_event/changed_field';
+export const CLEAR_DATA = 'creator_event/clear_data';
 
 export const loaded = (values) => ({
   type: LOADED_DATA,
