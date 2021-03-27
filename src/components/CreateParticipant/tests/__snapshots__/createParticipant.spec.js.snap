@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateParticipant component should render AddPlayerForm without errors 1`] = `
+<Row
+  align="middle"
+  justify="center"
+  style={
+    Object {
+      "flexDirection": "column",
+      "paddingTop": "200px",
+      "textAlign": "center",
+    }
+  }
+  type="flex"
+>
+  <h2>
+    Adding player
+  </h2>
+  <div>
+    <Button
+      disabled={true}
+      style={
+        Object {
+          "margin": "15px",
+        }
+      }
+    >
+      Add player
+    </Button>
+    <Button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": "15px",
+        }
+      }
+      type="primary"
+    >
+      Add team
+    </Button>
+  </div>
+  <AddPlayerForm
+    addData={[Function]}
+    addNewParameters={[Function]}
+    newParticipant={
+      Object {
+        "name": "",
+        "parameters": Array [
+          Object {
+            "type": "",
+            "value": "",
+          },
+        ],
+        "photoLink": "",
+        "players": Array [
+          Object {
+            "name": "",
+          },
+        ],
+      }
+    }
+    submitHandler={[Function]}
+  />
+</Row>
+`;
+
+exports[`CreateParticipant component should render AddTeamForm without errors 1`] = `
+<Row
+  align="middle"
+  justify="center"
+  style={
+    Object {
+      "flexDirection": "column",
+      "paddingTop": "200px",
+      "textAlign": "center",
+    }
+  }
+  type="flex"
+>
+  <h2>
+    Adding team
+  </h2>
+  <div>
+    <Button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": "15px",
+        }
+      }
+      type="primary"
+    >
+      Add player
+    </Button>
+    <Button
+      disabled={true}
+      style={
+        Object {
+          "margin": "15px",
+        }
+      }
+    >
+      Add team
+    </Button>
+  </div>
+  <AddTeamForm
+    addData={[Function]}
+    addNewParameters={[Function]}
+    newTeam={
+      Object {
+        "name": "",
+        "parameters": Array [
+          Object {
+            "type": "",
+            "value": "",
+          },
+        ],
+        "photoLink": "",
+        "players": Array [
+          Object {
+            "name": "",
+          },
+        ],
+      }
+    }
+    submitHandler={[Function]}
+  />
+</Row>
+`;
+
+exports[`CreateParticipant component should render Result that new participant added 1`] = `
+<Result
+  title="New participant added"
+>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <Button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": "5px",
+        }
+      }
+      type="primary"
+    >
+      Go to main
+    </Button>
+    <Button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": "5px",
+        }
+      }
+      type="default"
+    >
+      Add new participant
+    </Button>
+  </div>
+</Result>
+`;
+
+exports[`CreateParticipant component should render Result with error 1`] = `
+<Result
+  subTitle="Please, try again"
+  title="An error occurred"
+>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <Button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": "5px",
+        }
+      }
+      type="primary"
+    >
+      Go to main
+    </Button>
+    <Button
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": "5px",
+        }
+      }
+      type="default"
+    >
+      Retry
+    </Button>
+  </div>
+</Result>
+`;

@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddTeamForm component should render 2 parameters and players forms without error 1`] = `
+<ForwardRef(InternalForm)
+  layout="vertical"
+  onFinish={[Function]}
+>
+  <FormItem
+    label="Name"
+    name="name"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter name",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <FormItem
+    label="Link to photo"
+    name="photoLink"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter link to photo",
+          "required": true,
+        },
+        Object {
+          "message": "Enter .png photo please",
+          "pattern": /\\.png\\$/,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <div
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <p>
+      Players
+    </p>
+    <AddingPlayersInTeam
+      addData={[MockFunction]}
+      id={0}
+      initialData={
+        Object {
+          "name": "",
+        }
+      }
+      key="0"
+      type="teamPlayers"
+    />
+    <AddingPlayersInTeam
+      addData={[MockFunction]}
+      id={1}
+      initialData={
+        Object {
+          "name": "",
+        }
+      }
+      key="1"
+      type="teamPlayers"
+    />
+  </div>
+  <FormItem>
+    <Button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Add new player
+    </Button>
+  </FormItem>
+  <div
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <p>
+      Parameters
+    </p>
+    <AddingParameters
+      addData={[MockFunction]}
+      id={0}
+      initialData={
+        Object {
+          "type": "",
+          "value": "",
+        }
+      }
+      key="0"
+      type="teamParameters"
+    />
+    <AddingParameters
+      addData={[MockFunction]}
+      id={1}
+      initialData={
+        Object {
+          "type": "",
+          "value": "",
+        }
+      }
+      key="1"
+      type="teamParameters"
+    />
+  </div>
+  <FormItem>
+    <Button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Add new parameter
+    </Button>
+  </FormItem>
+  <FormItem>
+    <Button
+      htmlType="submit"
+      type="primary"
+    >
+      Submit
+    </Button>
+  </FormItem>
+</ForwardRef(InternalForm)>
+`;
+
+exports[`AddTeamForm component should render without error 1`] = `
+<ForwardRef(InternalForm)
+  layout="vertical"
+  onFinish={[Function]}
+>
+  <FormItem
+    label="Name"
+    name="name"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter name",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <FormItem
+    label="Link to photo"
+    name="photoLink"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter link to photo",
+          "required": true,
+        },
+        Object {
+          "message": "Enter .png photo please",
+          "pattern": /\\.png\\$/,
+        },
+      ]
+    }
+  >
+    <Input
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <div
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <p>
+      Players
+    </p>
+    <AddingPlayersInTeam
+      addData={[MockFunction]}
+      id={0}
+      initialData={
+        Object {
+          "name": "",
+        }
+      }
+      key="0"
+      type="teamPlayers"
+    />
+  </div>
+  <FormItem>
+    <Button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Add new player
+    </Button>
+  </FormItem>
+  <div
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <p>
+      Parameters
+    </p>
+    <AddingParameters
+      addData={[MockFunction]}
+      id={0}
+      initialData={
+        Object {
+          "type": "",
+          "value": "",
+        }
+      }
+      key="0"
+      type="teamParameters"
+    />
+  </div>
+  <FormItem>
+    <Button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Add new parameter
+    </Button>
+  </FormItem>
+  <FormItem>
+    <Button
+      htmlType="submit"
+      type="primary"
+    >
+      Submit
+    </Button>
+  </FormItem>
+</ForwardRef(InternalForm)>
+`;

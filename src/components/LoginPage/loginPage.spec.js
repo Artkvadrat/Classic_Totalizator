@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Form } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../ducks/loginPage/loginPage';
 
 import '../../setupTests';
@@ -9,7 +9,9 @@ import '../../setupTests';
 import LoginPage from './LoginPage';
 
 jest.mock('react-redux', () => ({
-  useDispatch: jest.fn()
+  ...jest.requireActual('react-redux'),
+  useDispatch: jest.fn(),
+  useSelector: jest.fn()
 }));
 
 jest.mock('../../ducks/loginPage/loginPage', () => ({
@@ -17,28 +19,44 @@ jest.mock('../../ducks/loginPage/loginPage', () => ({
 }));
 
 describe('LoginPage component', () => {
-  let wrapper;
-
   const dispatch = jest.fn();
   const mockedLoginUser = jest.fn();
 
   beforeEach(() => {
     useDispatch.mockReturnValue(dispatch);
     loginUser.mockReturnValue(mockedLoginUser);
-
-    wrapper = shallow(<LoginPage />);
   });
 
   it('should render without error', () => {
+    useSelector.mockReturnValueOnce({ isLoading: false, isError: false });
+    const wrapper = shallow(<LoginPage />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render spinner without error', () => {
+    useSelector.mockReturnValueOnce({ isLoading: true, isError: false });
+    const wrapper = shallow(<LoginPage />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render form with error message without error', () => {
+    useSelector.mockReturnValueOnce({ isLoading: false, isError: true });
+    const wrapper = shallow(<LoginPage />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render form without error', () => {
+    useSelector.mockReturnValueOnce({ isLoading: false, isError: false });
+    const wrapper = shallow(<LoginPage />);
+
     expect(wrapper.find(Form)).toBeDefined();
     expect(wrapper.find(Form)).toMatchSnapshot();
   });
 
   it('should trigger dispatch on submit form', () => {
+    useSelector.mockReturnValueOnce({ isLoading: false, isError: false });
+    const wrapper = shallow(<LoginPage />);
+
     const fakeData = {
       email: 'email',
       password: 'password'
