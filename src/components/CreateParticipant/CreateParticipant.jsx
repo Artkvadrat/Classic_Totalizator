@@ -132,7 +132,7 @@ const CreateParticipant = () => {
   };
 
   const reloadPage = () => {
-    history.push('/create-participant');
+    dispatch(resetError());
   };
 
   const clearError = () => {
