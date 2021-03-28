@@ -98,8 +98,8 @@ describe('CreateParticipant component', () => {
 
     wrapper.find(Button).at(1).simulate('click');
 
-    expect(history.push).toHaveBeenCalled();
-    expect(history.push).toHaveBeenCalledWith('/create-participant');
+    expect(dispatch).toHaveBeenCalled();
+    expect(dispatch).toHaveBeenCalledWith(resetError());
   });
 
   it('should render Result with error', () => {
