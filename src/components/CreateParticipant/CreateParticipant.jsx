@@ -133,6 +133,15 @@ const CreateParticipant = () => {
 
   const reloadPage = () => {
     dispatch(resetError());
+    const initialState = {
+      name: '',
+      players: [{ name: '' }],
+      photoLink: '',
+      parameters: [{ type: '', value: '' }]
+    };
+
+    setNewParticipant(initialState);
+    setNewTeam(initialState);
   };
 
   const clearError = () => {
