@@ -94,10 +94,28 @@ exports[` 1`] = `
 `;
 
 exports[`BetsPage component should render skeleton if loading in progress 1`] = `
-<Skeleton
-  active={true}
-  avatar={false}
-  paragraph={true}
-  title={true}
-/>
+<Fragment>
+  <Row
+    justify="start"
+    style={
+      Object {
+        "margin": 16,
+      }
+    }
+  >
+    <Col
+      span={20}
+    >
+      <h1>
+        Bets (live)
+      </h1>
+    </Col>
+  </Row>
+  <Skeleton
+    active={true}
+    avatar={false}
+    paragraph={true}
+    title={true}
+  />
+</Fragment>
 `;

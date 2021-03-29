@@ -1,12 +1,11 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { useDispatch, useSelector } from 'react-redux';
-
 import { Skeleton, Table } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadBets } from '../../ducks/bets/bets';
 
 import '../../setupTests';
 
-import { loadBets } from '../../ducks/bets/bets';
 import BetsPage from './BetsPage';
 
 jest.mock('react-redux', () => ({
@@ -20,6 +19,17 @@ jest.mock('../../ducks/bets/bets', () => ({
 
 describe('BetsPage component', () => {
   const dispatch = jest.fn();
+  beforeAll(() => {
+    window.matchMedia =
+      window.matchMedia ||
+      function () {
+        return {
+          matches: false,
+          addListener: () => {},
+          removeListener: () => {}
+        };
+      };
+  });
 
   beforeEach(() => {
     useDispatch.mockReturnValue(dispatch);
