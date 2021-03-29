@@ -82,7 +82,7 @@ describe(' reducer of creator events', () => {
         participant_Id2: '',
         startTime: '',
         possibleResults: ['W1', 'X', 'W2'],
-        sportId: 1,
+        sport_Id: 1,
         margin: 0
       },
       isLoading: true
