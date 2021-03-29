@@ -2,6 +2,9 @@
 
 ## Creators
 
+- [Cherednichenko Vladyslav](https://github.com/iCherya)
+- [Kovaliv Volodymyr](https://github.com/mrkovaliv)
+- [Nabok Danylo](https://github.com/Artkvadrat)
 
 ## Task
 
