@@ -190,7 +190,7 @@ const CreateParticipant = () => {
       }}
     >
       <h2>Adding player</h2>
-      <div>
+      <div style={{ display: 'none' }}>
         <Button disabled style={{ margin: '15px' }}>
           Add player
         </Button>

@@ -16,7 +16,13 @@ exports[`CreateParticipant component should render AddPlayerForm without errors 
   <h2>
     Adding player
   </h2>
-  <div>
+  <div
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
     <Button
       disabled={true}
       style={
