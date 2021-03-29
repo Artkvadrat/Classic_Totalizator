@@ -33,7 +33,7 @@ describe('Testing actions', () => {
         participant_Id2: '',
         startTime: '',
         possibleResults: ['W1', 'X', 'W2'],
-        sportId: 1,
+        sport_Id: 1,
         margin: 0
       },
       isLoading: true
@@ -109,7 +109,7 @@ describe(' reducer of creator events', () => {
         participant_Id2: '',
         startTime: '',
         possibleResults: ['W1', 'X', 'W2'],
-        sportId: 1,
+        sport_Id: 1,
         margin: 0
       },
       isLoading: false
@@ -132,7 +132,7 @@ describe(' reducer of creator events', () => {
         participant_Id2: '',
         startTime: '',
         possibleResults: ['W1', 'X', 'W2'],
-        sportId: 1,
+        sport_Id: 1,
         margin: 10
       },
       isLoading: true
@@ -149,7 +149,7 @@ describe(' reducer of creator events', () => {
             participant_Id2: 'ewdwdewd',
             startTime: '',
             possibleResults: ['W1', 'X', 'W2'],
-            sportId: 1,
+            sport_Id: 1,
             margin: 10
           },
           isLoading: false
