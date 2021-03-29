@@ -13,8 +13,8 @@ jest.mock('../../services/HTTPService/HTTPService', () => ({
             account_Id: '3efa62a5-dfb4-4c87-bb0b-d76ef04d6026',
             teamConfrontation: 'Conor McGregor - France',
             choice: 'X',
-            eventStartime: '2021-04-03T18:10:00+00:00',
-            betTime: '2021-03-27T10:21:52.107599+00:00',
+            eventStartime: '',
+            betTime: '',
             amount: 450.0,
             status: 'Active'
           },
@@ -23,8 +23,8 @@ jest.mock('../../services/HTTPService/HTTPService', () => ({
             account_Id: '3cb46bd3-aed7-42b5-b56d-afb9de071921',
             teamConfrontation: 'Konor - Konor2',
             choice: 'W1',
-            eventStartime: '2021-03-27T13:34:40.5+00:00',
-            betTime: '0001-01-01T00:00:00+00:00',
+            eventStartime: '',
+            betTime: '',
             amount: 1300,
             status: null
           }
@@ -70,8 +70,8 @@ describe('bets reducer', () => {
           {
             eventTitle: 'Conor McGregor - France',
             betChoice: 'X',
-            betTime: '12:21 27.03.2021',
-            eventTime: '21:10 03.04.2021',
+            betTime: '',
+            eventTime: '',
             betStatus: 'Active',
             userId: '3efa62a5-dfb4-4c87-bb0b-d76ef04d6026',
             key: 'ff8c2f0e-12e5-4f82-9e22-0f0362aa16ae',
@@ -80,8 +80,8 @@ describe('bets reducer', () => {
           {
             eventTitle: 'Konor - Konor2',
             betChoice: 'W1',
-            betTime: '02:02 01.01.1',
-            eventTime: '15:34 27.03.2021',
+            betTime: '',
+            eventTime: '',
             betStatus: 'Not resolved',
             userId: '3cb46bd3-aed7-42b5-b56d-afb9de071921',
             key: '4010a7f8-80d6-4eac-b0ee-fc4937c3b30e',
