@@ -1,4 +1,4 @@
-const END_POINT = 'https://classic-totalizator-ajg2w.ondigitalocean.app';
+const END_POINT = 'https://classic-totalizator-pdett.ondigitalocean.app';
 
 export default class HTTPService {
   static async request({ method = 'GET', path, body }) {
