@@ -21,4 +21,4 @@ Implement back office (admin panel) for Classic Totalizator:
 
 ## Demo
 
-[https://zen-euclid-51f41a.netlify.app/](https://zen-euclid-51f41a.netlify.app/)
+[Website](https://relaxed-booth-270d73.netlify.app/)
